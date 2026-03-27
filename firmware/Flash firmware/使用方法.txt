@@ -1,0 +1,4 @@
+1. Use Vivado tool to burn boot.bin and fsbl.elf into flash.
+2. Set the onboard startup switch to "10", which is the flash startup mode. Connect the "USB" port to the computer to enter the DFU mode.
+3. Modify the path in the "program_defu. bat" file, save and exit, double-click to run, and wait for the dfu to burn to complete.
+4. If using a network port, you need to set the IP address and plug in the USB port of JTAG. The default firmware login account is root and password is analog. Then configure the IP address as ifconfig eth0 192.168.1.xx. In normal operation, you can use the official computer software.
