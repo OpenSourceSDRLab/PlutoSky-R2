@@ -1,0 +1,45 @@
+##############################################################################
+## Copyright (C) 2022-2023 Analog Devices, Inc. All rights reserved.
+#
+## GitHub action script for the check_guideline.py script located in .github/scripts
+##############################################################################
+
+name: Guideline checker
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'library/**'
+      - 'projects/**'
+
+jobs:
+  guideline_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          # version range
+          python-version: '3.x'
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+        # repository that retrieves all the changed files
+      - name: Load get-changed-files repo
+        uses: Ana06/get-changed-files@v2.2.0
+        id: changed_files
+        with:
+          format: space-delimited
+      - name: Print changed files
+        run: |
+          echo "::group::Click here to see the Changed files"
+          echo "${{ steps.changed_files.outputs.all }}"
+          echo "::endgroup::"
+      - name: Executing Py script for guideline check
+        id: execution
+        # -p flag means that files will be specified with their relative path
+        run: |
+          python ./.github/scripts/check_guideline.py -p ${{ steps.changed_files.outputs.all }}
+        shell: sh

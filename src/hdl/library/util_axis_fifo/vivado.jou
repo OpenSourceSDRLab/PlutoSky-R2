@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Mon Jun 23 20:59:18 2025
+# Process ID: 1245237
+# Current directory: /home/ubuntu/SDR_pluto_Prj/Fish-Wan-plutosdr-fw-7020-SDR-Flash/hdl/library/util_axis_fifo
+# Command line: vivado -mode batch -source util_axis_fifo_ip.tcl
+# Log file: /home/ubuntu/SDR_pluto_Prj/Fish-Wan-plutosdr-fw-7020-SDR-Flash/hdl/library/util_axis_fifo/vivado.log
+# Journal file: /home/ubuntu/SDR_pluto_Prj/Fish-Wan-plutosdr-fw-7020-SDR-Flash/hdl/library/util_axis_fifo/vivado.jou
+# Running On: ubuntu, OS: Linux, CPU Frequency: 3417.604 MHz, CPU Physical cores: 16, Host memory: 16720 MB
+#-----------------------------------------------------------
+source util_axis_fifo_ip.tcl
