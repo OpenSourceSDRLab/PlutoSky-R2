@@ -1,0 +1,71 @@
+
+# constraints
+# ad9361
+
+set_property -dict {PACKAGE_PIN AA7 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports rx_clk_in_p]
+set_property -dict {PACKAGE_PIN AA6 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports rx_clk_in_n]
+set_property -dict {PACKAGE_PIN AA9 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports rx_frame_in_p]
+set_property -dict {PACKAGE_PIN AA8 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports rx_frame_in_n]
+set_property -dict {PACKAGE_PIN AB10 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[0]}]
+set_property -dict {PACKAGE_PIN AB9 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[0]}]
+set_property -dict {PACKAGE_PIN Y11 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[1]}]
+set_property -dict {PACKAGE_PIN Y10 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[1]}]
+set_property -dict {PACKAGE_PIN AA11 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[2]}]
+set_property -dict {PACKAGE_PIN AB11 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[2]}]
+set_property -dict {PACKAGE_PIN V12 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[3]}]
+set_property -dict {PACKAGE_PIN W12 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[3]}]
+set_property -dict {PACKAGE_PIN AA12 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[4]}]
+set_property -dict {PACKAGE_PIN AB12 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[4]}]
+set_property -dict {PACKAGE_PIN W11 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[5]}]
+set_property -dict {PACKAGE_PIN W10 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[5]}]
+set_property -dict {PACKAGE_PIN Y6 IOSTANDARD LVDS_25} [get_ports tx_clk_out_p]
+set_property -dict {PACKAGE_PIN Y5 IOSTANDARD LVDS_25} [get_ports tx_clk_out_n]
+set_property -dict {PACKAGE_PIN Y9 IOSTANDARD LVDS_25} [get_ports tx_frame_out_p]
+set_property -dict {PACKAGE_PIN Y8 IOSTANDARD LVDS_25} [get_ports tx_frame_out_n]
+set_property -dict {PACKAGE_PIN Y4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[0]}]
+set_property -dict {PACKAGE_PIN AA4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[0]}]
+set_property -dict {PACKAGE_PIN AB2 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[1]}]
+set_property -dict {PACKAGE_PIN AB1 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[1]}]
+set_property -dict {PACKAGE_PIN W6 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[2]}]
+set_property -dict {PACKAGE_PIN W5 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[2]}]
+set_property -dict {PACKAGE_PIN V5 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[3]}]
+set_property -dict {PACKAGE_PIN V4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[3]}]
+set_property -dict {PACKAGE_PIN T4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[4]}]
+set_property -dict {PACKAGE_PIN U4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[4]}]
+set_property -dict {PACKAGE_PIN AB5 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[5]}]
+set_property -dict {PACKAGE_PIN AB4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[5]}]
+
+set_property -dict {PACKAGE_PIN U6 IOSTANDARD LVCMOS25} [get_ports {gpio_status[0]}]
+set_property -dict {PACKAGE_PIN T6 IOSTANDARD LVCMOS25} [get_ports {gpio_status[1]}]
+set_property -dict {PACKAGE_PIN AB6 IOSTANDARD LVCMOS25} [get_ports {gpio_status[2]}]
+set_property -dict {PACKAGE_PIN U7 IOSTANDARD LVCMOS25} [get_ports {gpio_status[3]}]
+set_property -dict {PACKAGE_PIN AB7 IOSTANDARD LVCMOS25} [get_ports {gpio_status[4]}]
+set_property -dict {PACKAGE_PIN U5 IOSTANDARD LVCMOS25} [get_ports {gpio_status[5]}]
+set_property -dict {PACKAGE_PIN R6 IOSTANDARD LVCMOS25} [get_ports {gpio_status[6]}]
+set_property -dict {PACKAGE_PIN P16 IOSTANDARD LVCMOS25} [get_ports {gpio_status[7]}]
+set_property -dict {PACKAGE_PIN R7 IOSTANDARD LVCMOS25} [get_ports {gpio_ctl[0]}]
+set_property -dict {PACKAGE_PIN V7 IOSTANDARD LVCMOS25} [get_ports {gpio_ctl[1]}]
+set_property -dict {PACKAGE_PIN W7 IOSTANDARD LVCMOS25} [get_ports {gpio_ctl[2]}]
+set_property -dict {PACKAGE_PIN V9 IOSTANDARD LVCMOS25} [get_ports {gpio_ctl[3]}]
+set_property -dict {PACKAGE_PIN T18 IOSTANDARD LVCMOS25} [get_ports gpio_en_agc]
+set_property -dict {PACKAGE_PIN R15 IOSTANDARD LVCMOS25} [get_ports gpio_sync]
+set_property -dict {PACKAGE_PIN U11 IOSTANDARD LVCMOS25} [get_ports gpio_resetb]
+set_property -dict {PACKAGE_PIN W8 IOSTANDARD LVCMOS25} [get_ports enable]
+set_property -dict {PACKAGE_PIN R16 IOSTANDARD LVCMOS25} [get_ports txnrx]
+
+set_property PACKAGE_PIN V10 [get_ports spi_csn]
+set_property IOSTANDARD LVCMOS25 [get_ports spi_csn]
+set_property PULLUP true [get_ports spi_csn]
+set_property -dict {PACKAGE_PIN U12 IOSTANDARD LVCMOS25} [get_ports spi_clk]
+set_property -dict {PACKAGE_PIN U10 IOSTANDARD LVCMOS25} [get_ports spi_mosi]
+set_property -dict {PACKAGE_PIN U9 IOSTANDARD LVCMOS25} [get_ports spi_miso]
+
+# clocks
+
+create_clock -period 4.000 -name rx_clk [get_ports rx_clk_in_p]
+
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets i_system_wrapper/system_i/axi_ad9361/inst/i_dev_if/i_clk/clk_ibuf_s]
+
+
+set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]

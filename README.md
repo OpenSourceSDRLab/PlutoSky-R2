@@ -39,7 +39,7 @@ Videos:
 2. The board answers at `192.168.2.1`; check with `iio_info -u ip:192.168.2.1`.
 3. Open IIO Oscilloscope, GNU Radio or another PlutoSDR program.
 
-The full steps, boot modes and firmware updates are in the **[Quick Start Guide](docs/Quick-Start-Guide.md)** ([PDF](docs/Quick-Start-Guide.pdf)).
+The full steps, boot modes, firmware updates and the bare-metal Vivado/Vitis test designs are in the **[Quick Start Guide](docs/Quick-Start-Guide.md)** ([PDF](docs/Quick-Start-Guide.pdf)).
 
 ## Repository layout
 
@@ -47,6 +47,8 @@ The full steps, boot modes and firmware updates are in the **[Quick Start Guide]
 |---|---|
 | `hardware/` | Board schematic (PDF) |
 | `firmware/` | Where to get the prebuilt firmware; `firmware/source/` has the firmware source changes |
+| `vivado/AD936X/` | Bare-metal AD936X reference design: Analog Devices HDL library and `fmcomms2` project adapted to this board (`AD936X_PL/projects/fmcomms2/zc702/zc702.xpr`), no-OS AD9361 application sources and `system_top.xsa` (`AD936X_PS/`) |
+| `vivado/Peripheral_Test/` | Vivado project with the Zynq PS configuration of this board (`Test_PL/`), test program sources and `design_1_wrapper.xsa` (`Test_PS/`) |
 | `docs/` | Quick Start Guide (Markdown and PDF) |
 | `images/` | Product photos |
 
@@ -59,13 +61,15 @@ Large files are attached to the [Releases](../../releases) page instead of being
 | `PlutoSky-R2_SD-card-firmware_v0.38.zip` | SD-card boot files (PlutoSDR firmware v0.38 port) |
 | `PlutoSky-R2_QSPI-flash-firmware_v0.38.zip` | QSPI flash firmware (factory firmware) and DFU script |
 | `jtag_spi_openwifi.zip` | openwifi image for the QSPI flash, written over JTAG (see the openwifi user manual) |
+| `PlutoSky-R2_AD936X_prebuilt_Vivado2021.1.zip` | Bare-metal AD936X design: bitstream, `.xsa`, FSBL, application `.elf` and `boot.bif` |
+| `PlutoSky-R2_Peripheral-Test_prebuilt_Vivado2021.1.zip` | Bare-metal peripheral tests: bitstream, `.xsa`, FSBL, LED / DDR / USB test `.elf` files and `boot.bif` |
 | `SHA256SUMS.txt` | SHA-256 checksums of the files above |
 
 Check a download with `shasum -a 256 -c SHA256SUMS.txt` (macOS / Linux) or `certutil -hashfile <file> SHA256` (Windows).
 
 ## Licence
 
-Files created by OpenSourceSDRLab are released under the [Apache License 2.0](LICENSE). The firmware is built from Analog Devices PlutoSDR firmware, Linux, U-Boot and buildroot (and, for openwifi, the openwifi project) and remains under their own licences (mostly GPL); see [NOTICE.md](NOTICE.md).
+Files created by OpenSourceSDRLab are released under the [Apache License 2.0](LICENSE). The firmware is built from Analog Devices PlutoSDR firmware, Linux, U-Boot and buildroot (and, for openwifi, the openwifi project) and remains under their own licences (mostly GPL). The sources in `vivado/` come from Analog Devices and Xilinx/AMD and keep their own licences. See [NOTICE.md](NOTICE.md).
 
 ## Support
 
