@@ -1,6 +1,6 @@
 # PlutoSky R2 firmware source (QSPI flash and SD-card PlutoSDR firmware)
 
-The PlutoSky R2 factory firmware (QSPI flash) and the SD-card PlutoSDR firmware are the Analog Devices PlutoSDR firmware **v0.38** ported to the XC7Z020-2CLG484 board. This folder contains the changes needed for the port as one patch against the exact upstream commits:
+The PlutoSky R2 factory firmware (QSPI flash) and the SD-card PlutoSDR firmware are the Analog Devices PlutoSDR firmware **v0.38** ported to the XC7Z020-2CLG484 board. This folder contains the changes needed for the port as one patch against the exact upstream commits. It reproduces the source tree the released firmware was built from (version string `v0.38-5-g76414-dirty`):
 
 | Component | Upstream repository | Commit (plutosdr-fw v0.38) |
 |---|---|---|
@@ -17,6 +17,7 @@ The PlutoSky R2 factory firmware (QSPI flash) and the SD-card PlutoSDR firmware 
 - `buildroot/board/pluto/S23udc`: USB gadget start-up script (fixed firmware version string and USB serial number, see below);
 - `buildroot/board/pluto/S40network`: Ethernet address `192.168.1.10` when `ipaddr_eth` is not set;
 - `hdl/projects/pluto/system_bd.tcl`, `system_constr.xdc`, `system_project.tcl`, `system_top.v`: FPGA design for the XC7Z020-2CLG484 pin-out, 32-bit DDR and the PL Ethernet;
+- `hdl/projects/pluto/ADF4001_init.v`, `ADF4001_spi_drive.v` (new): start-up configuration of the ADF4001 PLL that locks the 40 MHz oscillator to the 10 MHz reference input;
 - `Makefile`: builds `uImage` and the SD-card boot files (`make sdimg`).
 
 > **Note:** the `S23udc` change writes a fixed USB serial number instead of the flash chip's unique ID, so every board built from this source reports the same serial. When several boards are connected to one PC, address them by IP address (set a different IP in each board's `config.txt`).

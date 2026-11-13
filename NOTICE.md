@@ -3,6 +3,7 @@
 This repository and its release files contain work by OpenSourceSDRLab together with third-party software. The Apache License 2.0 in [LICENSE](LICENSE) applies **only** to the files created by OpenSourceSDRLab:
 
 - `docs/`, `hardware/`, `images/`, `firmware/README.md`, `firmware/source/README.md`, `README.md`
+- the two new files `hdl/projects/pluto/ADF4001_init.v` and `ADF4001_spi_drive.v` added by `firmware/source/plutosky-r2-plutosdr-fw-v0.38.patch`
 
 All other material keeps its original copyright notices and licences:
 

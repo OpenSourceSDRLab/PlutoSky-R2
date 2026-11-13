@@ -28,7 +28,7 @@
 +};
 +	
  / {
-+	model = "Analog Devices PlutoSDR Rev.C (Z7010/AD9363)";
++	model = "Analog Devices PlutoSDR Rev.C (Z7020/AD9361)";
 +
  	leds {
  		compatible = "gpio-leds";
@@ -36,7 +36,7 @@
 -			label = "led0:green";
 -			gpios = <&gpio0 68 0>;
 +			label = "led0:yellow";
-+			gpios = <&gpio0 0 0>;
++			gpios = <&gpio0 7 0>;
  			linux,default-trigger = "heartbeat";
  		};
  	};
@@ -134,15 +134,6 @@
  &qspi {
  	status = "okay";
  	is-dual = <0>;
-@@ -75,7 +101,7 @@
- 		};
- 		partition@qspi-linux {
- 			label = "qspi-linux";
--			reg = <0x200000 0x1E00000>; /* 30M */
-+			reg = <0x200000 0xE00000>; /* 30M */
- 		};
- 	};
- };
 @@ -186,7 +212,7 @@
  		#address-cells = <1>;
  		#size-cells = <0>;
@@ -216,7 +207,7 @@
 +	
  / {
 -	model = "Analog Devices PlutoSDR Rev.B (Z7010/AD9363)";
-+	model = "Analog Devices PlutoSDR Rev.C (Z7010/AD9363)";
++	model = "Analog Devices PlutoSDR Rev.C (Z7020/AD9361)";
  
  	leds {
  		compatible = "gpio-leds";
@@ -224,7 +215,7 @@
 -			label = "led0:green";
 -			gpios = <&gpio0 15 0>;
 +			label = "led0:yellow";
-+			gpios = <&gpio0 0 0>;
++			gpios = <&gpio0 7 0>;
  			linux,default-trigger = "heartbeat";
  		};
  	};
@@ -243,12 +234,19 @@
  };
 --- a/linux/arch/arm/boot/dts/zynq-pluto-sdr-revc.dts
 +++ b/linux/arch/arm/boot/dts/zynq-pluto-sdr-revc.dts
-@@ -102,7 +102,7 @@
+@@ -96,13 +96,13 @@
+ };
+ 
+ / {
+-	model = "Analog Devices PlutoSDR Rev.C (Z7010/AD9363)";
++	model = "Analog Devices PlutoSDR Rev.C (Z7020/AD9361)";
+ 
+ 	leds {
  		compatible = "gpio-leds";
  		led0 {
  			label = "led0:green";
 -			gpios = <&gpio0 15 0>;
-+			gpios = <&gpio0 0 0>;
++			gpios = <&gpio0 7 0>;
  			linux,default-trigger = "heartbeat";
  		};
  	};
@@ -397,24 +395,6 @@
  CONFIG_FIT_VERBOSE=y
 --- a/u-boot-xlnx/include/configs/zynq-common.h
 +++ b/u-boot-xlnx/include/configs/zynq-common.h
-@@ -78,7 +78,7 @@
- "dfu_sf_info="\
- "set dfu_alt_info " \
- "boot.dfu raw 0x0 0x100000\\\\;" \
--"firmware.dfu raw 0x200000 0x1E00000\\\\;" \
-+"firmware.dfu raw 0x200000 0x0E00000\\\\;" \
- "uboot-extra-env.dfu raw 0xFF000 0x1000\\\\;" \
- "uboot-env.dfu raw 0x100000 0x20000\\\\;" \
- "spare.dfu raw 0x120000 0xE0000\0" \
-@@ -127,7 +127,7 @@
- 	"dfu_ram_info=" \
- 	"set dfu_alt_info " \
- 	"dummy.dfu ram 0 0\\\\;" \
--	"firmware.dfu ram ${fit_load_address} 0x1E00000\0" \
-+	"firmware.dfu ram ${fit_load_address} 0xE00000\0" \
- 	"dfu_ram=echo Entering DFU RAM mode ... && run dfu_ram_info && dfu 0 ram 0\0" \
- 	"thor_ram=run dfu_ram_info && thordown 0 ram 0\0"
- 
 @@ -269,7 +269,7 @@
  			"fi; " \
  		"fi; \0" \
@@ -424,15 +404,6 @@
  	"adi_loadvals_pluto=if test -n \"${ad936x_ext_refclk}\" && test ! -n \"${ad936x_skip_ext_refclk}\"; then " \
  			"fdt set /clocks/clock@0 clock-frequency ${ad936x_ext_refclk}; " \
  		"fi; " \
-@@ -327,7 +327,7 @@
- 	"read_sf=sf probe 0:0 50000000 0 && run qspiboot_extraenv &&" \
- 		"sf read ${fit_load_address} 0x200000 ${fit_size} && " \
- 		"iminfo ${fit_load_address} || " \
--		"sf read ${fit_load_address} 0x200000  0x1E00000; \0" \
-+		"sf read ${fit_load_address} 0x200000  0xE00000; \0" \
- 	"ramboot_verbose=adi_hwref;echo Copying Linux from DFU to RAM... && " \
- 		"run dfu_ram;" \
- 		"if run adi_loadvals; then " \
 @@ -342,7 +342,7 @@
  		"fi; " \
  		"envversion;setenv bootargs console=ttyPS0,115200 maxcpus=${maxcpus} rootfstype=ramfs root=/dev/ram0 rw earlyprintk clk_ignore_unused uboot=\"${uboot-version}\" && " \
@@ -490,10 +461,11 @@
  # ps7 settings
  
 -ad_ip_parameter sys_ps7 CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 1.8V}
-+ad_ip_parameter sys_ps7 CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 3.3V}
- ad_ip_parameter sys_ps7 CONFIG.PCW_PRESET_BANK1_VOLTAGE {LVCMOS 1.8V}
+-ad_ip_parameter sys_ps7 CONFIG.PCW_PRESET_BANK1_VOLTAGE {LVCMOS 1.8V}
 -ad_ip_parameter sys_ps7 CONFIG.PCW_PACKAGE_NAME clg225
-+ad_ip_parameter sys_ps7 CONFIG.PCW_PACKAGE_NAME clg400
++ad_ip_parameter sys_ps7 CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 3.3V}
++ad_ip_parameter sys_ps7 CONFIG.PCW_PRESET_BANK1_VOLTAGE {LVCMOS 3.3V}
++ad_ip_parameter sys_ps7 CONFIG.PCW_PACKAGE_NAME clg484
 +ad_ip_parameter sys_ps7 CONFIG.PCW_GPIO_MIO_GPIO_ENABLE 1
 +ad_ip_parameter sys_ps7 CONFIG.PCW_ENET0_PERIPHERAL_ENABLE 1
 +ad_ip_parameter sys_ps7 CONFIG.PCW_ENET0_ENET0_IO "EMIO"
@@ -714,88 +686,94 @@
                      SEG_sys_ps7_HP2_DDR_LOWOCM
 --- a/hdl/projects/pluto/system_constr.xdc
 +++ b/hdl/projects/pluto/system_constr.xdc
-@@ -1,80 +1,88 @@
+@@ -1,80 +1,94 @@
  # constraints
  # ad9361 (SWAP == 0x1)
-+set_property  -dict {PACKAGE_PIN  G17   IOSTANDARD  LVCMOS25} [get_ports  MDIO_PHY_mdio_io]   ;
-+set_property  -dict {PACKAGE_PIN  G18   IOSTANDARD  LVCMOS25} [get_ports  MDIO_PHY_mdc]       ;
-+set_property  -dict {PACKAGE_PIN  D18   IOSTANDARD  LVCMOS25} [get_ports  RGMII_td[3]]  ;
-+set_property  -dict {PACKAGE_PIN  D19   IOSTANDARD  LVCMOS25} [get_ports  RGMII_td[2]]  ;
-+set_property  -dict {PACKAGE_PIN  B20   IOSTANDARD  LVCMOS25} [get_ports  RGMII_td[1]]  ;
-+set_property  -dict {PACKAGE_PIN  B19   IOSTANDARD  LVCMOS25} [get_ports  RGMII_td[0]]  ;
-+set_property  -dict {PACKAGE_PIN  E19   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rd[3]]  ;
-+set_property  -dict {PACKAGE_PIN  E18   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rd[2]]  ;
-+set_property  -dict {PACKAGE_PIN  D20   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rd[1]]  ;
-+set_property  -dict {PACKAGE_PIN  E17   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rd[0]]  ;
++set_property  -dict {PACKAGE_PIN  B15   IOSTANDARD  LVCMOS25} [get_ports  MDIO_PHY_mdio_io]   ;
++set_property  -dict {PACKAGE_PIN  C15   IOSTANDARD  LVCMOS25} [get_ports  MDIO_PHY_mdc]       ;
++set_property  -dict {PACKAGE_PIN  B16   IOSTANDARD  LVCMOS25} [get_ports  RGMII_td[3]]  ;
++set_property  -dict {PACKAGE_PIN  A16   IOSTANDARD  LVCMOS25} [get_ports  RGMII_td[2]]  ;
++set_property  -dict {PACKAGE_PIN  B17   IOSTANDARD  LVCMOS25} [get_ports  RGMII_td[1]]  ;
++set_property  -dict {PACKAGE_PIN  A17   IOSTANDARD  LVCMOS25} [get_ports  RGMII_td[0]]  ;
++set_property  -dict {PACKAGE_PIN  A22   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rd[3]]  ;
++set_property  -dict {PACKAGE_PIN  A18   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rd[2]]  ;
++set_property  -dict {PACKAGE_PIN  A19   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rd[1]]  ;
++set_property  -dict {PACKAGE_PIN  A21   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rd[0]]  ;
 +
-+set_property  -dict {PACKAGE_PIN  C20   IOSTANDARD  LVCMOS25} [get_ports  RGMII_tx_ctl]  ;
-+set_property  -dict {PACKAGE_PIN  A20   IOSTANDARD  LVCMOS25} [get_ports  RGMII_txc]     ;
-+set_property  -dict {PACKAGE_PIN  F16   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rx_ctl]  ;
-+set_property  -dict {PACKAGE_PIN  H16   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rxc]     ;
++set_property  -dict {PACKAGE_PIN  C17   IOSTANDARD  LVCMOS25} [get_ports  RGMII_tx_ctl]  ;
++set_property  -dict {PACKAGE_PIN  D18   IOSTANDARD  LVCMOS25} [get_ports  RGMII_txc]     ;
++set_property  -dict {PACKAGE_PIN  C18   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rx_ctl]  ;
++set_property  -dict {PACKAGE_PIN  B19   IOSTANDARD  LVCMOS25} [get_ports  RGMII_rxc]     ;
 +
-+set_property  -dict {PACKAGE_PIN  U18  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_clk_in_p]        
-+set_property  -dict {PACKAGE_PIN  U19  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_clk_in_n]        
-+set_property  -dict {PACKAGE_PIN  Y16  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_frame_in_p]      
-+set_property  -dict {PACKAGE_PIN  Y17  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_frame_in_n]      
-+set_property  -dict {PACKAGE_PIN  Y18  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_p[0]]   
-+set_property  -dict {PACKAGE_PIN  Y19  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_n[0]]   
-+set_property  -dict {PACKAGE_PIN  T16  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_p[1]]   
-+set_property  -dict {PACKAGE_PIN  U17  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_n[1]]   
-+set_property  -dict {PACKAGE_PIN  V20  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_p[2]]   
-+set_property  -dict {PACKAGE_PIN  W20  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_n[2]]   
-+set_property  -dict {PACKAGE_PIN  T17  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_p[3]]   
-+set_property  -dict {PACKAGE_PIN  R18  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_n[3]]   
-+set_property  -dict {PACKAGE_PIN  T20  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_p[4]]   
-+set_property  -dict {PACKAGE_PIN  U20  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_n[4]]   
-+set_property  -dict {PACKAGE_PIN  W18  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_p[5]]   
-+set_property  -dict {PACKAGE_PIN  W19  IOSTANDARD LVDS_25 DIFF_TERM TRUE} [get_ports rx_data_in_n[5]]   
-+set_property  -dict {PACKAGE_PIN  U14  IOSTANDARD LVDS_25} [get_ports tx_clk_out_p]                     
-+set_property  -dict {PACKAGE_PIN  U15  IOSTANDARD LVDS_25} [get_ports tx_clk_out_n]                     
-+set_property  -dict {PACKAGE_PIN  V16  IOSTANDARD LVDS_25} [get_ports tx_frame_out_p]                   
-+set_property  -dict {PACKAGE_PIN  W16  IOSTANDARD LVDS_25} [get_ports tx_frame_out_n]                   
-+set_property  -dict {PACKAGE_PIN  V15  IOSTANDARD LVDS_25} [get_ports tx_data_out_p[0]]                 
-+set_property  -dict {PACKAGE_PIN  W15  IOSTANDARD LVDS_25} [get_ports tx_data_out_n[0]]                 
-+set_property  -dict {PACKAGE_PIN  V12  IOSTANDARD LVDS_25} [get_ports tx_data_out_p[1]]                 
-+set_property  -dict {PACKAGE_PIN  W13  IOSTANDARD LVDS_25} [get_ports tx_data_out_n[1]]                 
-+set_property  -dict {PACKAGE_PIN  W14  IOSTANDARD LVDS_25} [get_ports tx_data_out_p[2]]                 
-+set_property  -dict {PACKAGE_PIN  Y14  IOSTANDARD LVDS_25} [get_ports tx_data_out_n[2]]                 
-+set_property  -dict {PACKAGE_PIN  T12  IOSTANDARD LVDS_25} [get_ports tx_data_out_p[3]]                 
-+set_property  -dict {PACKAGE_PIN  U12  IOSTANDARD LVDS_25} [get_ports tx_data_out_n[3]]                 
-+set_property  -dict {PACKAGE_PIN  T11  IOSTANDARD LVDS_25} [get_ports tx_data_out_p[4]]                 
-+set_property  -dict {PACKAGE_PIN  T10  IOSTANDARD LVDS_25} [get_ports tx_data_out_n[4]]                 
-+set_property  -dict {PACKAGE_PIN  U13  IOSTANDARD LVDS_25} [get_ports tx_data_out_p[5]]                 
-+set_property  -dict {PACKAGE_PIN  V13  IOSTANDARD LVDS_25} [get_ports tx_data_out_n[5]]                  
++set_property -dict {PACKAGE_PIN AA7 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports rx_clk_in_p]
++set_property -dict {PACKAGE_PIN AA6 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports rx_clk_in_n]
++set_property -dict {PACKAGE_PIN AA9 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports rx_frame_in_p]
++set_property -dict {PACKAGE_PIN AA8 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports rx_frame_in_n]
++set_property -dict {PACKAGE_PIN AB10 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[0]}]
++set_property -dict {PACKAGE_PIN AB9 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[0]}]
++set_property -dict {PACKAGE_PIN Y11 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[1]}]
++set_property -dict {PACKAGE_PIN Y10 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[1]}]
++set_property -dict {PACKAGE_PIN AA11 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[2]}]
++set_property -dict {PACKAGE_PIN AB11 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[2]}]
++set_property -dict {PACKAGE_PIN V12 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[3]}]
++set_property -dict {PACKAGE_PIN W12 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[3]}]
++set_property -dict {PACKAGE_PIN AA12 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[4]}]
++set_property -dict {PACKAGE_PIN AB12 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[4]}]
++set_property -dict {PACKAGE_PIN W11 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_p[5]}]
++set_property -dict {PACKAGE_PIN W10 IOSTANDARD LVDS_25 DIFF_TERM 1} [get_ports {rx_data_in_n[5]}]
++set_property -dict {PACKAGE_PIN Y6 IOSTANDARD LVDS_25} [get_ports tx_clk_out_p]
++set_property -dict {PACKAGE_PIN Y5 IOSTANDARD LVDS_25} [get_ports tx_clk_out_n]
++set_property -dict {PACKAGE_PIN Y9 IOSTANDARD LVDS_25} [get_ports tx_frame_out_p]
++set_property -dict {PACKAGE_PIN Y8 IOSTANDARD LVDS_25} [get_ports tx_frame_out_n]
++set_property -dict {PACKAGE_PIN Y4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[0]}]
++set_property -dict {PACKAGE_PIN AA4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[0]}]
++set_property -dict {PACKAGE_PIN AB2 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[1]}]
++set_property -dict {PACKAGE_PIN AB1 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[1]}]
++set_property -dict {PACKAGE_PIN W6 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[2]}]
++set_property -dict {PACKAGE_PIN W5 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[2]}]
++set_property -dict {PACKAGE_PIN V5 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[3]}]
++set_property -dict {PACKAGE_PIN V4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[3]}]
++set_property -dict {PACKAGE_PIN T4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[4]}]
++set_property -dict {PACKAGE_PIN U4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[4]}]
++set_property -dict {PACKAGE_PIN AB5 IOSTANDARD LVDS_25} [get_ports {tx_data_out_p[5]}]
++set_property -dict {PACKAGE_PIN AB4 IOSTANDARD LVDS_25} [get_ports {tx_data_out_n[5]}]
 +
-+set_property  -dict {PACKAGE_PIN  L20 IOSTANDARD LVCMOS25} [get_ports gpio_status[0]]                  
-+set_property  -dict {PACKAGE_PIN  L19 IOSTANDARD LVCMOS25} [get_ports gpio_status[1]]                  
-+set_property  -dict {PACKAGE_PIN  K19 IOSTANDARD LVCMOS25} [get_ports gpio_status[2]]                  
-+set_property  -dict {PACKAGE_PIN  T14 IOSTANDARD LVCMOS25} [get_ports gpio_status[3]]                  
-+set_property  -dict {PACKAGE_PIN  P15 IOSTANDARD LVCMOS25} [get_ports gpio_status[4]]                  
-+set_property  -dict {PACKAGE_PIN  M20 IOSTANDARD LVCMOS25} [get_ports gpio_status[5]]                  
-+set_property  -dict {PACKAGE_PIN  M19 IOSTANDARD LVCMOS25} [get_ports gpio_status[6]]                  
-+set_property  -dict {PACKAGE_PIN  N20 IOSTANDARD LVCMOS25} [get_ports gpio_status[7]]
-+                 
-+set_property  -dict {PACKAGE_PIN  J19 IOSTANDARD LVCMOS25} [get_ports gpio_ctl[0]]                     
-+set_property  -dict {PACKAGE_PIN  K14 IOSTANDARD LVCMOS25} [get_ports gpio_ctl[1]]                     
-+set_property  -dict {PACKAGE_PIN  L17 IOSTANDARD LVCMOS25} [get_ports gpio_ctl[2]]                     
-+set_property  -dict {PACKAGE_PIN  J20 IOSTANDARD LVCMOS25} [get_ports gpio_ctl[3]] 
-+set_property  -dict {PACKAGE_PIN  P20  IOSTANDARD LVCMOS25} [get_ports gpio_en_agc]
-+set_property  -dict {PACKAGE_PIN  R19  IOSTANDARD LVCMOS25} [get_ports gpio_resetb]
++set_property -dict {PACKAGE_PIN U6 IOSTANDARD LVCMOS25} [get_ports {gpio_status[0]}]
++set_property -dict {PACKAGE_PIN T6 IOSTANDARD LVCMOS25} [get_ports {gpio_status[1]}]
++set_property -dict {PACKAGE_PIN AB6 IOSTANDARD LVCMOS25} [get_ports {gpio_status[2]}]
++set_property -dict {PACKAGE_PIN U7 IOSTANDARD LVCMOS25} [get_ports {gpio_status[3]}]
++set_property -dict {PACKAGE_PIN AB7 IOSTANDARD LVCMOS25} [get_ports {gpio_status[4]}]
++set_property -dict {PACKAGE_PIN U5 IOSTANDARD LVCMOS25} [get_ports {gpio_status[5]}]
++set_property -dict {PACKAGE_PIN R6 IOSTANDARD LVCMOS25} [get_ports {gpio_status[6]}]
++set_property -dict {PACKAGE_PIN P16 IOSTANDARD LVCMOS25} [get_ports {gpio_status[7]}]
++set_property -dict {PACKAGE_PIN R7 IOSTANDARD LVCMOS25} [get_ports {gpio_ctl[0]}]
++set_property -dict {PACKAGE_PIN V7 IOSTANDARD LVCMOS25} [get_ports {gpio_ctl[1]}]
++set_property -dict {PACKAGE_PIN W7 IOSTANDARD LVCMOS25} [get_ports {gpio_ctl[2]}]
++set_property -dict {PACKAGE_PIN V9 IOSTANDARD LVCMOS25} [get_ports {gpio_ctl[3]}]
++set_property -dict {PACKAGE_PIN T18 IOSTANDARD LVCMOS25} [get_ports gpio_en_agc]
++set_property -dict {PACKAGE_PIN R15 IOSTANDARD LVCMOS25} [get_ports gpio_sync]
++set_property -dict {PACKAGE_PIN U11 IOSTANDARD LVCMOS25} [get_ports gpio_resetb]
++set_property -dict {PACKAGE_PIN W8 IOSTANDARD LVCMOS25} [get_ports enable]
++set_property -dict {PACKAGE_PIN R16 IOSTANDARD LVCMOS25} [get_ports txnrx]
 +
-+set_property  -dict {PACKAGE_PIN  T15  IOSTANDARD LVCMOS25} [get_ports enable]
-+set_property  -dict {PACKAGE_PIN  P18  IOSTANDARD LVCMOS25} [get_ports txnrx]
 +
-+set_property  -dict {PACKAGE_PIN  M14  IOSTANDARD LVCMOS25 PULLTYPE PULLUP} [get_ports iic_scl]
-+set_property  -dict {PACKAGE_PIN  M15  IOSTANDARD LVCMOS25 PULLTYPE PULLUP} [get_ports iic_sda]
++set_property  -dict {PACKAGE_PIN  V10  IOSTANDARD LVCMOS25  PULLTYPE PULLUP} [get_ports spi_csn]
++set_property -dict {PACKAGE_PIN U12 IOSTANDARD LVCMOS25} [get_ports spi_clk]
++set_property -dict {PACKAGE_PIN U10 IOSTANDARD LVCMOS25} [get_ports spi_mosi]
++set_property -dict {PACKAGE_PIN U9 IOSTANDARD LVCMOS25} [get_ports spi_miso]
 +
-+set_property  -dict {PACKAGE_PIN  R17  IOSTANDARD LVCMOS25  PULLTYPE PULLUP} [get_ports spi_csn]
-+set_property  -dict {PACKAGE_PIN  V18  IOSTANDARD LVCMOS25} [get_ports spi_clk]
-+set_property  -dict {PACKAGE_PIN  P16  IOSTANDARD LVCMOS25} [get_ports spi_mosi]
-+set_property  -dict {PACKAGE_PIN  V17  IOSTANDARD LVCMOS25} [get_ports spi_miso]
++set_property -dict {PACKAGE_PIN AB22 IOSTANDARD LVCMOS33} [get_ports pll_le]
++set_property -dict {PACKAGE_PIN AB21 IOSTANDARD LVCMOS33} [get_ports pll_clk]
++set_property -dict {PACKAGE_PIN AA21 IOSTANDARD LVCMOS33} [get_ports pll_mosi]
++set_property -dict {PACKAGE_PIN Y19  IOSTANDARD LVCMOS33} [get_ports i_clk]
 +
-+set_property  -dict {PACKAGE_PIN  L14  IOSTANDARD LVCMOS25} [get_ports pl_spi_clk_o]
-+set_property  -dict {PACKAGE_PIN  N15  IOSTANDARD LVCMOS25} [get_ports pl_spi_miso]
-+set_property  -dict {PACKAGE_PIN  N16  IOSTANDARD LVCMOS25} [get_ports pl_spi_mosi]
++
++set_property  -dict {PACKAGE_PIN  H17  IOSTANDARD LVCMOS25 PULLTYPE PULLUP} [get_ports iic_scl]
++set_property  -dict {PACKAGE_PIN  F16  IOSTANDARD LVCMOS25 PULLTYPE PULLUP} [get_ports iic_sda]
++
++set_property  -dict {PACKAGE_PIN  E16  IOSTANDARD LVCMOS25} [get_ports pl_spi_clk_o]
++set_property  -dict {PACKAGE_PIN  D16  IOSTANDARD LVCMOS25} [get_ports pl_spi_miso]
++set_property  -dict {PACKAGE_PIN  D17  IOSTANDARD LVCMOS25} [get_ports pl_spi_mosi]
  
 -set_property  -dict {PACKAGE_PIN  L12  IOSTANDARD LVCMOS18 } [get_ports rx_clk_in]
 -set_property  -dict {PACKAGE_PIN  N13  IOSTANDARD LVCMOS18 } [get_ports rx_frame_in]
@@ -876,7 +854,7 @@
  
  # probably gone in 2016.4
  
-@@ -86,133 +94,5 @@
+@@ -86,133 +100,5 @@
  set_input_jitter clk_fpga_0 0.3
  set_input_jitter clk_fpga_1 0.15
  
@@ -1012,15 +990,20 @@
  
 --- a/hdl/projects/pluto/system_project.tcl
 +++ b/hdl/projects/pluto/system_project.tcl
-@@ -2,7 +2,7 @@
+@@ -2,10 +2,12 @@
  source $ad_hdl_dir/projects/scripts/adi_project_xilinx.tcl
  source $ad_hdl_dir/projects/scripts/adi_board.tcl
  
 -adi_project_create pluto 0 {} "xc7z010clg225-1"
-+adi_project_create pluto 0 {} "xc7z020clg400-2"
++adi_project_create pluto 0 {} "xc7z020clg484-2"
  
  adi_project_files pluto [list \
    "system_top.v" \
++  "ADF4001_init.v" \
++  "ADF4001_spi_drive.v" \
+   "system_constr.xdc" \
+   "$ad_hdl_dir/library/common/ad_iobuf.v"]
+ 
 --- a/hdl/projects/pluto/system_top.v
 +++ b/hdl/projects/pluto/system_top.v
 @@ -36,7 +36,15 @@
@@ -1093,7 +1076,7 @@
  
    inout           gpio_resetb,
    inout           gpio_en_agc,
-@@ -81,11 +97,9 @@
+@@ -81,11 +97,15 @@
    output          spi_mosi,
    input           spi_miso,
  
@@ -1104,11 +1087,17 @@
 -  inout           pl_gpio4
 +  output          pl_spi_clk_o,
 +  output          pl_spi_mosi,
-+  input           pl_spi_miso
++  input           pl_spi_miso,
++  
++  output   	  pll_le,
++  output          pll_clk,
++  output          pll_mosi,
++  input           i_clk
++    
  );
  
    // internal signals
-@@ -94,16 +108,6 @@
+@@ -94,16 +114,6 @@
    wire    [17:0]  gpio_o;
    wire    [17:0]  gpio_t;
  
@@ -1125,7 +1114,7 @@
    // instantiations
  
    ad_iobuf #(
-@@ -118,29 +122,19 @@
+@@ -118,29 +128,19 @@
                gpio_status}));     //  7: 0
  
    assign gpio_i[16:14] = gpio_o[16:14];
@@ -1134,7 +1123,7 @@
  
 -  assign pl_gpio4 = iic_scl;      //PL_GPIO4
 -  assign pl_gpio3 = iic_sda;      //PL_GPIO3
- 
+-
 -  //PL_GPIO2
 -  ad_iobuf #(
 -    .DATA_WIDTH(1)
@@ -1147,7 +1136,7 @@
 -  //PL_GPIO1
 -  assign pl_spi_miso = pl_gpio1 & ~phaser_enable;
 -  assign pl_burst    = pl_gpio1 &  phaser_enable;
--
+ 
 -  //PL_GPIO0
 -  assign pl_gpio0 = phaser_enable ? pl_txdata : pl_spi_mosi;
  
@@ -1164,7 +1153,7 @@
      .ddr_addr (ddr_addr),
      .ddr_ba (ddr_ba),
      .ddr_cas_n (ddr_cas_n),
-@@ -168,9 +162,12 @@
+@@ -168,9 +168,12 @@
      .gpio_t (gpio_t),
      .iic_main_scl_io (iic_scl),
      .iic_main_sda_io (iic_sda),
@@ -1180,7 +1169,7 @@
  
      .spi0_clk_i (1'b0),
      .spi0_clk_o (spi_clk),
-@@ -190,12 +187,12 @@
+@@ -190,14 +193,37 @@
      .spi_sdo_i(1'b0),
      .spi_sdo_o(pl_spi_mosi),
  
@@ -1199,6 +1188,31 @@
      .txnrx (txnrx),
      .up_enable (gpio_o[15]),
      .up_txnrx (gpio_o[16]));
+ 
++
++reg [2:0] cnt; 
++reg adf4001_spi_clk;
++always @(posedge i_clk) begin
++    cnt <= cnt + 1'b1;          
++    if(cnt == 3'd3) adf4001_spi_clk <= 1'b1;
++    else if(cnt == 3'd7) begin 
++        adf4001_spi_clk <= 1'b0;
++        cnt <= 3'b0;
++    end
++end
++
++ADF4001_init ADF4001_INIT_U(
++//system clock and reset
++	.clk            (adf4001_spi_clk),
++	.rst_n          (1'b1),
++
++	.SPI_LE         (pll_le   ),
++	.SPI_SCLK       (pll_clk  ),
++	.SPI_MOSI       (pll_mosi )
++);
++
++
+ endmodule
 --- a/Makefile
 +++ b/Makefile
 @@ -28,7 +28,9 @@
@@ -1284,3 +1298,213 @@
 +	rm $(SDIMGDIR)/u-boot.elf
 +	rm $(SDIMGDIR)/ramdisk.image.gz 
 +	rm $(SDIMGDIR)/boot.bif
+--- /dev/null
++++ b/hdl/projects/pluto/ADF4001_init.v
+@@ -0,0 +1,116 @@
++module ADF4001_init#
++(
++    parameter SPI_CLK_FREQ_MHZ = 5 
++)(
++//system clock and reset
++	input 				clk,
++	input 				rst_n,
++	
++//ADF4001 interface
++	output				SPI_LE,
++	output				SPI_SCLK,
++	output				SPI_MOSI,
++//status	
++	output 	reg		    init_done
++);
++
++//SPI driver
++wire 			spi_wr_start;
++wire 			spi_wr_done;
++reg [23:0] 	    spi_wr_data;
++reg 			spi_wr_en;
++
++ADF4001_spi_drive ADF4001_spi_drive_u(
++    .clk				(clk),
++    .rst_n				(rst_n),
++	
++    .wr_start			(spi_wr_start),
++    .wr_done			(spi_wr_done),
++
++    .wr_en				(spi_wr_en),
++    .wr_data			(spi_wr_data),
++
++    .spi_clk			(SPI_SCLK),
++    .spi_csn			(SPI_LE),
++    .spi_sdo			(SPI_MOSI)
++);
++
++reg	   [ 1:0]	reset_index;
++reg	   [ 7:0]	index;          
++reg	   [ 2:0]	state;
++reg    [31:0] 	delay_cnt;
++
++    
++always @ (posedge clk or negedge rst_n)begin
++    if(!rst_n) begin 
++        index       <= 0;       //reset index
++        init_done   <= 0;       //clear init-done flag
++        state       <= 0;       //reset state machine
++        delay_cnt   <= 0;       //delay counter
++        spi_wr_en   <= 0;       //clear SPI write enable
++        reset_index <= 0;
++    end
++    else 
++        case (state)    
++            3'd0    :   begin 
++                            spi_wr_data <= ADF4001_lut(index);
++                            spi_wr_en   <= 1'b0;	
++                            state 		<= 3'd1;
++            end  
++            
++            3'd1    :   begin 
++                            spi_wr_en   <= 1'b1;	
++                            state 		<= 3'd2;
++                        end  
++
++            3'd2    :   begin
++                            if(spi_wr_start) begin 
++                                state <= 3'd3;
++                                spi_wr_en   <= 1'b0;
++                            end
++                        end
++            3'd3    :   begin
++                            if(spi_wr_done) begin 
++                                state <= 3'd4;
++                            end
++                        end       
++            3'd4    :   begin 
++                            if(delay_cnt <= SPI_CLK_FREQ_MHZ * 2000)   //200Us
++                                delay_cnt <= delay_cnt + 1;
++                            else begin
++                                delay_cnt <= 0;   
++                                if(index == 8'd3) begin
++                                state <= 3'd5;
++                                end
++                                else begin
++                                    state <= 3'd0;
++                                    index <= index + 8'd1;
++                                end
++                            end
++                        end                        
++            3'd5    :   begin 
++                            state <= state;
++                            init_done <= 1'b1;
++                        end
++                        
++            default :   state <= 3'd0;
++            
++        endcase
++end
++	
++
++function [23:0] ADF4001_lut;
++    input [7:0] index;              //input index
++    reg [23:0] ADF4001_lut_d;       //intermediate value
++    begin
++        case(index)
++            8'd0:  ADF4001_lut_d = 24'h1F_8093;		
++            8'd1:  ADF4001_lut_d = 24'h1F_8092;	 			
++            8'd2:  ADF4001_lut_d = 24'h00_0004;                                          
++            8'd3:  ADF4001_lut_d = 24'h00_0401;	
++        endcase   
++        ADF4001_lut = ADF4001_lut_d;            //output the current value
++    end   
++endfunction   
++     
++endmodule
+--- /dev/null
++++ b/hdl/projects/pluto/ADF4001_spi_drive.v
+@@ -0,0 +1,87 @@
++module ADF4001_spi_drive(
++//system clock and reset
++    input 				clk,
++    input				rst_n,
++	
++//status
++    input 				wr_en,          //write enable, active high
++    input 		[23:0]  wr_data,        //write data
++    output 	reg 		wr_done,        //write done, active high
++    output 	reg 		wr_start,       //write start output
++	
++//SPI interface
++    output	reg 		spi_clk,
++    output	reg		    spi_csn,
++    output	 			spi_sdo
++);
++
++reg	   [4:0]   bit_cnt;	            //number of bits sent
++reg	   [23:0]  command;
++reg	   [2:0]   state;
++//SPI state    
++localparam     IDLE			= 0,            //idle
++			   START		= 1,            //start: load the command register
++			   TR			= 2,            //rising edge
++			   TR_0			= 3,            //falling edge
++			   DONE			= 4;
++
++//SPI write
++assign spi_sdo = command[23];
++always @ (posedge clk or negedge rst_n)
++begin
++    if(!rst_n) begin
++        state       <= IDLE;
++        spi_csn     <= 0;           
++        bit_cnt     <= 0;
++        wr_done 	<= 0;
++        spi_clk     <= 0;           //SPI idle state
++    end
++    else 
++        case (state)
++            IDLE   :   if (wr_en)                       
++                            begin
++                                state   <= START;
++                                bit_cnt <= 5'd0;	
++                                wr_done <= 1'b0;
++                                spi_clk <= 0;
++                                spi_csn <= 0;
++                            end 
++
++            START :     begin
++                                state   <= TR;
++                                wr_start<= 1'b1;
++                                command <= wr_data;//{1'b0,wr_addr,wr_data};
++                                spi_csn <= 1'b0;
++                        end
++            TR      :   if (bit_cnt <= 5'd23) 
++                            begin
++                                bit_cnt <= bit_cnt + 5'd1;
++                                spi_clk <= 1;
++                                state   <= TR_0;
++                            end
++                        else 
++                            begin
++                                spi_csn <= 1'b0;
++                                bit_cnt <= 5'd0;
++                                spi_clk <= 0;
++                                state   <= DONE;
++                            end
++            
++            TR_0    :   begin
++                            spi_clk <= 0;
++                            command <= command << 1;
++                            state   <= TR;
++                        end
++
++            DONE    :   begin 
++                            wr_done  <= 1'b1;
++                            wr_start <= 1'b0;
++                            spi_csn  <= 1'b1;
++                            state <= IDLE;
++                        end
++            
++            default :   state <= IDLE;
++        endcase
++end
++       
++endmodule
+\ No newline at end of file
