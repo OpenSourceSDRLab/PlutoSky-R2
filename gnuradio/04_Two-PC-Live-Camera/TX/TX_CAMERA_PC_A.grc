@@ -1,0 +1,950 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: Custom
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: r2_camera_only_tx
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Live Camera Transmitter A
+    window_size: (1440, 980)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 16
+    - 4.0
+    rotation: 0
+    state: enabled
+blocks:
+- name: bandwidth
+  id: variable
+  parameters:
+    comment: ''
+    value: int(symbol_rate*1.2)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 256
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: bit_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '2048000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 408
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: camera_name
+  id: variable
+  parameters:
+    comment: ''
+    value: '''default'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 184
+    - 100.0
+    rotation: 0
+    state: enabled
+- name: excess_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.35'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 544
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 2.0e9
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 680
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: jpeg_quality
+  id: variable
+  parameters:
+    comment: ''
+    value: '65'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 672
+    - 100.0
+    rotation: 0
+    state: enabled
+- name: max_frame_bytes
+  id: variable
+  parameters:
+    comment: ''
+    value: '19000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1816
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: one_frame_data
+  id: variable
+  parameters:
+    comment: ''
+    value: '796'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 784
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: qpsk
+  id: variable_constellation_rect
+  parameters:
+    comment: ''
+    const_points: '[0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]'
+    imag_sect: '2'
+    precision: '8'
+    real_sect: '2'
+    rot_sym: '4'
+    soft_dec_lut: None
+    sym_map: '[0, 1, 2, 3]'
+    w_imag_sect: '1'
+    w_real_sect: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 2032
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: samp_rate_after_constellation
+  id: variable
+  parameters:
+    comment: ''
+    value: int(symbol_rate*sps)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1368
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: source_mode
+  id: variable
+  parameters:
+    comment: ''
+    value: '''camera'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 24
+    - 108.0
+    rotation: 0
+    state: enabled
+- name: sps
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1264
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: symbol_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: bit_rate/2
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1120
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: tx_attenuation
+  id: variable
+  parameters:
+    comment: ''
+    value: '10.0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 960
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: tx_uri
+  id: variable
+  parameters:
+    comment: ''
+    value: '''ip:192.168.2.1'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1608
+    - 4.0
+    rotation: 0
+    state: enabled
+- name: video_fps
+  id: variable
+  parameters:
+    comment: ''
+    value: '10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 832
+    - 108.0
+    rotation: 0
+    state: enabled
+- name: video_height
+  id: variable
+  parameters:
+    comment: ''
+    value: '360'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 352
+    - 100.0
+    rotation: 0
+    state: enabled
+- name: video_width
+  id: variable
+  parameters:
+    comment: ''
+    value: '640'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 512
+    - 100.0
+    rotation: 0
+    state: enabled
+- name: blocks_char_to_float_0_0_1_0
+  id: blocks_char_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: '1'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1776
+    - 260.0
+    rotation: 0
+    state: enabled
+- name: digital_constellation_modulator_0
+  id: digital_constellation_modulator
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    differential: 'True'
+    excess_bw: excess_bw
+    log: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_symbol: sps
+    truncate: 'False'
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 528
+    - 396.0
+    rotation: 0
+    state: enabled
+- name: epy_block_1
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"Version 1 live JPEG video transport, independent of the old file protocol.\"\"\"\nimport struct\nimport time\nimport zlib\nimport numpy as np\n\nSYNC = bytes.fromhex('acdda4e2f28c20fc')\nHEADER = struct.Struct('!BBHIIHH')\nPAYLOAD = 768\nWIRE_SIZE = len(SYNC) + HEADER.size + PAYLOAD + 4\nMAX_UNIT = 256 * 1024\nMAX_PARTS = (MAX_UNIT + 4 + PAYLOAD - 1) // PAYLOAD\nIDLE_PAYLOAD = np.random.default_rng(1407).integers(0, 256, PAYLOAD, dtype=np.uint8).tobytes()\n\n\ndef packet(kind, session, sequence, index, count, payload):\n    if len(payload) > PAYLOAD:\n        raise ValueError('Payload too large')\n    body = HEADER.pack(1, kind, len(payload), session, sequence, index, count)\n    body += payload.ljust(PAYLOAD, b'\\0')\n    return SYNC + body + struct.pack('!I', zlib.crc32(body) & 0xffffffff)\n\n\ndef idle_packet(session):\n    return packet(0, session, 0, 0, 1, IDLE_PAYLOAD)\n\n\ndef split_unit(data, session, sequence):\n    if not 0 < len(data) <= MAX_UNIT:\n  \
+      \      raise ValueError('Invalid compressed frame size')\n    unit = struct.pack('!I', zlib.crc32(data) & 0xffffffff) + data\n    count = (len(unit) + PAYLOAD - 1) // PAYLOAD\n    return [packet(1, session, sequence, i, count, unit[i*PAYLOAD:(i+1)*PAYLOAD])\n            for i in range(count)]\n\n\ndef newer(a, b):\n    return 0 < ((a - b) & 0xffffffff) < 0x80000000\n\n\nclass BitDeframer:\n    \"\"\"Search all eight bit alignments; never assumes scheduler byte alignment.\"\"\"\n    def __init__(self):\n        self.bits = np.empty(0, dtype=np.uint8)\n        self.bad_crc = 0\n        self.valid_packets = 0\n\n    def feed(self, bits):\n        self.bits = np.concatenate((self.bits, np.asarray(bits, dtype=np.uint8) & 1))\n        records = []\n        offset = 0\n        while len(self.bits) - offset >= 64:\n            view = self.bits[offset:]\n            best = None\n            for phase in range(8):\n                pos = np.packbits(view[phase:]).tobytes().find(SYNC)\n      \
+      \          if pos >= 0:\n                    at = pos * 8 + phase\n                    if best is None or at < best:\n                        best = at\n            if best is None:\n                offset = len(self.bits) - 63\n                break\n            start = offset + best\n            if len(self.bits) - start < WIRE_SIZE * 8:\n                offset = start\n                break\n            raw = np.packbits(self.bits[start:start+WIRE_SIZE*8]).tobytes()\n            body = raw[8:-4]\n            if zlib.crc32(body) & 0xffffffff != int.from_bytes(raw[-4:], 'big'):\n                self.bad_crc += 1\n                offset = start + 1\n                continue\n            version, kind, size, session, sequence, index, count = HEADER.unpack(body[:HEADER.size])\n            if (version != 1 or kind not in (0, 1) or size > PAYLOAD\n                    or not 1 <= count <= MAX_PARTS or not 0 <= index < count\n                    or (kind == 1 and (size == 0 or (index < count-1\
+      \ and size != PAYLOAD)))):\n                offset = start + 1\n                continue\n            records.append((kind, session, sequence, index, count, body[HEADER.size:HEADER.size+size]))\n            self.valid_packets += 1\n            offset = start + WIRE_SIZE * 8\n        if offset:\n            self.bits = self.bits[offset:].copy()\n        return records\n\n\nclass UnitAssembler:\n    \"\"\"Keep at most one bounded video frame; newer frames supersede incomplete ones.\"\"\"\n    def __init__(self):\n        self.session = None\n        self.sequence = None\n        self.parts = {}\n        self.count = 0\n        self.complete = False\n        self.deadline = 0\n        self.lost_units = 0\n        self.duplicates = 0\n        self.bad_units = 0\n        self.idle_packets = 0\n        self.units = 0\n\n    def feed(self, record, now=None):\n        now = time.monotonic() if now is None else now\n        kind, session, sequence, index, count, data = record\n        if kind\
+      \ == 0:\n            self.idle_packets += 1\n            if self.parts and now > self.deadline:\n                self.parts.clear()\n                self.complete = True\n                self.lost_units += 1\n            return None\n        if session != self.session:\n            self.session, self.sequence = session, None\n            self.parts.clear()\n        if self.sequence is None or newer(sequence, self.sequence):\n            if self.sequence is not None:\n                delta = (sequence - self.sequence) & 0xffffffff\n                self.lost_units += delta - 1 + int(not self.complete)\n            self.sequence = sequence\n            self.count = count\n            self.parts = {}\n            self.complete = False\n            self.deadline = now + 0.75\n        elif sequence != self.sequence:\n            return None\n        if self.complete or index in self.parts:\n            self.duplicates += 1\n            return None\n        if now > self.deadline or count\
+      \ != self.count:\n            self.parts.clear()\n            self.complete = True\n            self.lost_units += 1\n            return None\n        self.parts[index] = data\n        if len(self.parts) != self.count:\n            return None\n        raw = b''.join(self.parts[i] for i in range(self.count))\n        self.parts.clear()\n        self.complete = True\n        if len(raw) < 5 or len(raw)-4 > MAX_UNIT or zlib.crc32(raw[4:]) & 0xffffffff != int.from_bytes(raw[:4], 'big'):\n            self.bad_units += 1\n            self.lost_units += 1\n            return None\n        self.units += 1\n        return session, sequence, raw[4:]\n\nimport threading\nfrom PyQt5 import QtCore, QtGui, QtWidgets, QtMultimedia\n\n\ndef live_test_image(index, width, height):\n    x=np.arange(width,dtype=np.uint16)[None,:]\n    y=np.arange(height,dtype=np.uint16)[:,None]\n    rgb=np.empty((height,width,3),dtype=np.uint8)\n    rgb[:,:,0]=(x//3+index*3)%256\n    rgb[:,:,1]=(y//2+index*2)%256\n \
+      \   rgb[:,:,2]=((x+y)//5)%256\n    left=(index*7)%max(1,width-50)\n    rgb[height//3:height//3+40,left:left+50]=(255,230,30)\n    return QtGui.QImage(rgb.data,width,height,width*3,QtGui.QImage.Format_RGB888).copy()\n\n\ndef live_frame_image(frame):\n    \"\"\"Detach camera image, including the YUV formats common on Windows webcams.\"\"\"\n    if not frame.map(QtMultimedia.QAbstractVideoBuffer.ReadOnly):\n        raise RuntimeError('Cannot read the camera video buffer')\n    try:\n        w,h,stride=frame.width(),frame.height(),frame.bytesPerLine()\n        fmt=frame.pixelFormat()\n        qfmt=QtMultimedia.QVideoFrame.imageFormatFromPixelFormat(fmt)\n        if qfmt!=QtGui.QImage.Format_Invalid:\n            return QtGui.QImage(frame.bits(),w,h,stride,qfmt).copy()\n        ptr=frame.bits();ptr.setsize(frame.mappedBytes())\n        raw=np.frombuffer(ptr,dtype=np.uint8)\n        VF=QtMultimedia.QVideoFrame\n        if fmt==VF.Format_BGR24:\n            rgb=raw[:h*stride].reshape(h,stride)[:,:w*3].reshape(h,w,3)[:,:,::-1].copy()\n\
+      \        else:\n            if fmt in (VF.Format_YUYV,VF.Format_UYVY):\n                a=raw[:h*stride].reshape(h,stride)[:,:w*2].reshape(h,w//2,4)\n                yy=np.empty((h,w),dtype=np.float32)\n                if fmt==VF.Format_YUYV:\n                    yy[:,0::2]=a[:,:,0];yy[:,1::2]=a[:,:,2]\n                    uu=a[:,:,1].repeat(2,axis=1);vv=a[:,:,3].repeat(2,axis=1)\n                else:\n                    yy[:,0::2]=a[:,:,1];yy[:,1::2]=a[:,:,3]\n                    uu=a[:,:,0].repeat(2,axis=1);vv=a[:,:,2].repeat(2,axis=1)\n            elif fmt in (VF.Format_NV12,VF.Format_NV21,VF.Format_YUV420P,VF.Format_YV12):\n                yy=raw[:h*stride].reshape(h,stride)[:,:w].astype(np.float32)\n                if fmt in (VF.Format_NV12,VF.Format_NV21):\n                    cs=frame.bytesPerLine(1)\n                    p=frame.bits(1);p.setsize(cs*((h+1)//2))\n                    a=np.frombuffer(p,dtype=np.uint8).reshape((h+1)//2,cs)[:,:w].reshape((h+1)//2,w//2,2)\n    \
+      \                uu,vv=a[:,:,0],a[:,:,1]\n                    if fmt==VF.Format_NV21:uu,vv=vv,uu\n                else:\n                    planes=[]\n                    for plane in (1,2):\n                        cs=frame.bytesPerLine(plane)\n                        p=frame.bits(plane);p.setsize(cs*((h+1)//2))\n                        planes.append(np.frombuffer(p,dtype=np.uint8).reshape((h+1)//2,cs)[:,:w//2])\n                    uu,vv=planes\n                    if fmt==VF.Format_YV12:uu,vv=vv,uu\n                uu=uu.repeat(2,axis=0).repeat(2,axis=1)[:h,:w]\n                vv=vv.repeat(2,axis=0).repeat(2,axis=1)[:h,:w]\n            else:\n                raise RuntimeError('Unsupported camera pixel format: '+str(fmt))\n            c=yy-16.0;d=uu.astype(np.float32)-128;e=vv.astype(np.float32)-128\n            rgb=np.stack((1.164*c+1.596*e,1.164*c-.392*d-.813*e,1.164*c+2.017*d),axis=2)\n            rgb=np.ascontiguousarray(np.clip(rgb,0,255),dtype=np.uint8)\n        return QtGui.QImage(rgb.data,w,h,w*3,QtGui.QImage.Format_RGB888).copy()\n\
+      \    finally:\n        frame.unmap()\n\n\nclass LiveVideoSurface(QtMultimedia.QAbstractVideoSurface):\n    frame_ready=QtCore.pyqtSignal(QtGui.QImage)\n    problem=QtCore.pyqtSignal(str)\n\n    def __init__(self,fps,parent=None):\n        super().__init__(parent)\n        self.period=1.0/fps\n        self.due=0\n        self._image_lock=threading.Lock()\n        self._latest_image=None\n        self._image_serial=0\n\n    def supportedPixelFormats(self,handleType=QtMultimedia.QAbstractVideoBuffer.NoHandle):\n        if handleType!=QtMultimedia.QAbstractVideoBuffer.NoHandle:return []\n        VF=QtMultimedia.QVideoFrame\n        return [VF.Format_RGB32,VF.Format_ARGB32,VF.Format_ARGB32_Premultiplied,\n                VF.Format_RGB24,VF.Format_BGR24,VF.Format_BGR32,VF.Format_BGRA32,\n                VF.Format_YUYV,VF.Format_UYVY,VF.Format_NV12,VF.Format_NV21,\n                VF.Format_YUV420P,VF.Format_YV12]\n\n    def present(self,video_frame):\n        now=time.monotonic()\n     \
+      \   if now+0.002<self.due:return True\n        if not self.due or now-self.due>self.period:self.due=now\n        self.due+=self.period\n        frame=QtMultimedia.QVideoFrame(video_frame)\n        try:\n            image=live_frame_image(frame)\n            if self.surfaceFormat().scanLineDirection()==QtMultimedia.QVideoSurfaceFormat.BottomToTop:\n                image=image.mirrored(False,True)\n            with self._image_lock:\n                self._image_serial+=1\n                self._latest_image=(self._image_serial,image)\n            return True\n        except Exception as exc:\n            self.problem.emit(str(exc))\n            return False\n\n\nclass LiveQtBridge(QtCore.QObject):\n    start_requested=QtCore.pyqtSignal()\n    stop_requested=QtCore.pyqtSignal()\n\n    def __init__(self,block,role):\n        super().__init__()\n        self.block,self.role=block,role\n        self.start_requested.connect(self.begin)\n        self.stop_requested.connect(self.finish)\n  \
+      \      self.panel=None\n        self.camera=None\n        self.video_timer=None\n        self.capture_timer=None\n        self.serial=None\n        self.pixmap=None\n        self.last_size=None\n        self.test_index=0\n        self._stopping=False\n        self._preview_kind=None\n\n    @QtCore.pyqtSlot()\n    def begin(self):\n        self._stopping=False\n        try:\n            self._make_player()\n            if self.role=='tx':\n                if self.block._mode=='test':\n                    self.capture_timer=QtCore.QTimer(self)\n                    self.capture_timer.timeout.connect(self._test_tick)\n                    self.capture_timer.start(max(1,round(1000/self.block._fps)))\n                    self._test_tick()\n                else:\n                    self._start_camera()\n        except Exception as exc:\n            self.block._error='Start failed: '+str(exc)\n            print('[Live video] '+self.block._error,flush=True)\n\n    def _make_player(self):\n\
+      \        top=None\n        for widget in QtWidgets.QApplication.topLevelWidgets():\n            if getattr(widget,'epy_block_1',None) is self.block or getattr(widget,'epy_block_0',None) is self.block:\n                top=widget;break\n        # The combined software graph shows the received video, so it has one player.\n        if self.role=='tx' and top is not None and hasattr(top,'epy_block_0'):\n            return\n        if self.panel is None:\n            self.panel=QtWidgets.QWidget()\n            layout=QtWidgets.QVBoxLayout(self.panel)\n            self.title=QtWidgets.QLabel('Transmitter: original camera image' if self.role=='tx' else 'Receiver: live video')\n            self.title.setStyleSheet('font-size:17px;font-weight:600;padding:4px')\n            layout.addWidget(self.title)\n            controls=QtWidgets.QHBoxLayout()\n            if self.role=='tx':\n                self.preview_choice=QtWidgets.QComboBox()\n                self.preview_choice.addItems(['Original\
+      \ camera image','Image sent over the air'])\n                controls.addWidget(self.preview_choice)\n            self.enlarge=QtWidgets.QCheckBox('Fit to window (may look blurry)')\n            self.enlarge.setChecked(False)\n            controls.addWidget(self.enlarge)\n            controls.addStretch(1)\n            layout.addLayout(controls)\n            self.picture=QtWidgets.QLabel('Waiting for the camera image...' if self.role=='tx' else 'Waiting for received video...')\n            self.picture.setAlignment(QtCore.Qt.AlignCenter)\n            self.picture.setMinimumSize(480,360)\n            self.picture.setSizePolicy(QtWidgets.QSizePolicy.Ignored,QtWidgets.QSizePolicy.Ignored)\n            self.picture.setStyleSheet('background:#10151d;color:#dee8f5;font-size:20px')\n            layout.addWidget(self.picture,1)\n            self.status=QtWidgets.QLabel(self.block.get_status())\n            self.status.setWordWrap(True)\n            layout.addWidget(self.status)\n         \
+      \   if top is not None and hasattr(top,'monitor_tabs_layout_0'):\n                top.monitor_tabs_layout_0.addWidget(self.panel)\n            else:\n                self.panel.setWindowTitle('Live video player (built into the project)')\n                self.panel.resize(800,650)\n                self.panel.show()\n        self.video_timer=QtCore.QTimer(self)\n        self.video_timer.timeout.connect(self.update_player)\n        self.video_timer.start(25)\n\n    @QtCore.pyqtSlot()\n    def update_player(self):\n        original=self.role=='tx' and self.preview_choice.currentIndex()==0\n        kind='original' if original else 'transmitted'\n        if kind!=self._preview_kind:\n            self._preview_kind=kind;self.serial=None;self.last_size=None\n            if self.role=='tx':self.title.setText('Transmitter: original camera image' if original else 'Image sent over the air (the same JPEG as the receiver gets)')\n        latest=self.block.get_original_frame() if original else self.block.get_latest_frame()\n\
+      \        if latest and latest[0]!=self.serial:\n            self.serial,payload=latest\n            image=payload if original else QtGui.QImage.fromData(payload,'JPEG')\n            if image.isNull():\n                self.block._error='The received image cannot be decoded'\n            else:\n                self.pixmap=QtGui.QPixmap.fromImage(image)\n                self.last_size=None\n                if self.role=='rx':self.block.displayed_frames+=1\n        size=self.picture.size();render_key=(size.width(),size.height(),self.enlarge.isChecked())\n        if self.pixmap is not None and render_key!=self.last_size:\n            target=size if self.enlarge.isChecked() else QtCore.QSize(min(size.width(),self.pixmap.width()),min(size.height(),self.pixmap.height()))\n            self.picture.setPixmap(self.pixmap.scaled(target,QtCore.Qt.KeepAspectRatio,QtCore.Qt.SmoothTransformation))\n            self.last_size=render_key\n        self.status.setText(self.block.get_status())\n\n   \
+      \ def _test_tick(self):\n        self.block.accept_image(live_test_image(self.test_index,self.block._width,self.block._height))\n        self.test_index+=1\n\n    def _start_camera(self):\n        devices=QtMultimedia.QCameraInfo.availableCameras()\n        name=self.block._camera\n        if name.lower()=='default':\n            if not devices:raise RuntimeError('No camera found: check the connection and the Windows camera permission')\n            info=QtMultimedia.QCameraInfo.defaultCamera()\n            if info.isNull():info=devices[0]\n        else:\n            info=next((d for d in devices if d.description()==name or d.deviceName()==name),None)\n            if info is None:\n                raise RuntimeError('Camera not found: '+name+'; available: '+', '.join(d.description() for d in devices))\n        self.block._camera_label=info.description()\n        self.camera=QtMultimedia.QCamera(info,self)\n        self.surface=LiveVideoSurface(self.block._fps,self)\n        self._camera_serial=None\n\
+      \        self.capture_timer=QtCore.QTimer(self)\n        self.capture_timer.timeout.connect(self.poll_camera)\n        self.capture_timer.start(max(10,round(500/self.block._fps)))\n        self.surface.problem.connect(self.camera_problem)\n        self.camera.setViewfinder(self.surface)\n        self.camera.error.connect(lambda code:self.camera_problem(self.camera.errorString() if self.camera else ''))\n        self.camera.statusChanged.connect(self.camera_status)\n        self._camera_configured=False\n        self.camera.load()\n\n    def camera_status(self,status):\n        if self._stopping:return\n        if status==QtMultimedia.QCamera.LoadedStatus and not self._camera_configured:\n            self._camera_configured=True\n            formats=self.surface.supportedPixelFormats()\n            settings=[s for s in self.camera.supportedViewfinderSettings() if s.pixelFormat() in formats]\n            if settings:\n                # Use an actual supported mode; never force an unsupported\
+      \ camera size.\n                def rank(s):\n                    size=s.resolution()\n                    target_w=max(1280,self.block._width);target_h=max(720,self.block._height)\n                    return (size.width()<target_w or size.height()<target_h,abs(size.width()-target_w)+abs(size.height()-target_h),-s.maximumFrameRate())\n                self.camera.setViewfinderSettings(min(settings,key=rank))\n            QtCore.QTimer.singleShot(0,self.camera.start)\n\n    @QtCore.pyqtSlot(QtGui.QImage)\n    def camera_frame(self,image):\n        if not self._stopping:self.block.accept_image(image)\n\n    @QtCore.pyqtSlot()\n    def poll_camera(self):\n        with self.surface._image_lock:latest=self.surface._latest_image\n        if latest is not None and latest[0]!=self._camera_serial:\n            self._camera_serial=latest[0]\n            self.camera_frame(latest[1])\n\n    @QtCore.pyqtSlot(str)\n    def camera_problem(self,message):\n        if not self._stopping:\n          \
+      \  self.block._error='Camera: '+message\n            print('[Live camera] '+message,flush=True)\n\n    @QtCore.pyqtSlot()\n    def finish(self):\n        self._stopping=True\n        if self.capture_timer:self.capture_timer.stop()\n        if self.video_timer:self.video_timer.stop()\n        if self.camera:\n            self.camera.stop()\n            self.camera.unload()\n            self.camera.deleteLater()\n            self.camera=None\n\nimport collections\nimport secrets\nfrom gnuradio import gr\n\n\nclass VideoSource(gr.sync_block):\n    \"\"\"Self-contained Windows camera -> JPEG video stream. F5 starts capture.\"\"\"\n    def __init__(self,source_mode='camera',camera_name='default',video_width=320,\n                 video_height=240,video_fps=8,jpeg_quality=65,max_frame_bytes=10000,\n                 radio_bitrate=1024000):\n        gr.sync_block.__init__(self,name='Camera Live Stream (Qt/JPEG)',in_sig=None,out_sig=[np.uint8])\n        self.set_max_output_buffer(65536)\n \
+      \       self.set_max_noutput_items(4096)\n        self._consumed_bytes=None\n        self._mode,self._camera=str(source_mode),str(camera_name)\n        self._width,self._height=int(video_width),int(video_height)\n        self._fps,self._quality=int(video_fps),int(jpeg_quality)\n        self._max_bytes=int(max_frame_bytes)\n        self._radio_bitrate=int(radio_bitrate)\n        if self._mode not in ('camera','test') or not 1<=self._fps<=30 or not 10<=self._quality<=90 or min(self._width,self._height)<64 or not 2000<=self._max_bytes<=20000:\n            raise ValueError('Invalid video settings')\n        if self._fps*((self._max_bytes+4+PAYLOAD-1)//PAYLOAD)*WIRE_SIZE*8>0.85*self._radio_bitrate:\n            raise ValueError('The video exceeds the link budget: lower video_fps or max_frame_bytes')\n        self._lock=threading.Lock()\n        self._queue=collections.deque()\n        self._pending=b'';self._position=0\n        self._session=0;self._idle=idle_packet(0)\n        self._latest=None;self._error='';self._last_frame=0\n\
+      \        self._original=None;self._original_serial=0;self._next_encode=0.0\n        self._encode_condition=threading.Condition()\n        self._raw_pending=None;self._encoder_stop=threading.Event();self._encoder_thread=None\n        self._capture_size=(0,0);self._last_quality=0;self._last_size=0;self._tx_size=(0,0)\n        self.oversize_frames=0\n        self._camera_label='Opening the default camera' if self._mode=='camera' else 'Software test pattern (not the camera)'\n        self.encoded_frames=0;self.dropped_frames=0;self.sent_packets=0;self.encoded_bytes=0\n        self._bridge=LiveQtBridge(self,'tx')\n\n    def start(self):\n        self._session=secrets.randbits(32)\n        self._idle=idle_packet(self._session)\n        self._queue.clear();self._pending=b'';self._position=0\n        self._error=''\n        self._next_encode=0.0\n        self._encoder_stop.clear();self._raw_pending=None\n        self._encoder_thread=threading.Thread(target=self._encode_loop,name='live-jpeg-encoder',daemon=True)\n\
+      \        self._encoder_thread.start()\n        self._bridge.start_requested.emit()\n        return True\n\n    def stop(self):\n        self._encoder_stop.set()\n        with self._encode_condition:self._encode_condition.notify_all()\n        if self._encoder_thread:self._encoder_thread.join(timeout=2)\n        self._bridge.stop_requested.emit()\n        return True\n\n    def accept_image(self,image):\n        if image.isNull():return\n        with self._lock:\n            self._original_serial+=1\n            self._original=(self._original_serial,image.copy())\n            self._capture_size=(image.width(),image.height())\n        with self._encode_condition:\n            self._raw_pending=image.copy()\n            self._encode_condition.notify()\n\n    def _encode_loop(self):\n        while not self._encoder_stop.is_set():\n            with self._encode_condition:\n                self._encode_condition.wait_for(lambda:self._raw_pending is not None or self._encoder_stop.is_set(),timeout=.1)\n\
+      \                if self._encoder_stop.is_set():break\n                image=self._raw_pending;self._raw_pending=None\n            if image is not None:self._encode_image(image)\n\n    def _encode_image(self,image):\n        try:\n            now=time.monotonic()\n            if now+0.002<self._next_encode:return\n            if not self._next_encode or now-self._next_encode>1.0/self._fps:self._next_encode=now\n            self._next_encode+=1.0/self._fps\n            image=image.scaled(self._width,self._height,QtCore.Qt.KeepAspectRatio,QtCore.Qt.SmoothTransformation)\n            quality=self._last_quality or self._quality\n            if self._last_size<self._max_bytes*.75:quality=min(self._quality,quality+5)\n            while True:\n                buffer=QtCore.QBuffer()\n                buffer.open(QtCore.QIODevice.WriteOnly)\n                if not image.save(buffer,'JPEG',quality):raise RuntimeError('Qt JPEG encoding failed')\n                jpeg=bytes(buffer.data())\n   \
+      \             if len(jpeg)<=self._max_bytes:break\n                minimum=min(40,self._quality)\n                if quality>minimum:quality=max(minimum,quality-5)\n                else:\n                    if image.width()<=160 or image.height()<=90:\n                        self.oversize_frames+=1\n                        return\n                    image=image.scaled(round(image.width()*.85),round(image.height()*.85),QtCore.Qt.KeepAspectRatio,QtCore.Qt.SmoothTransformation)\n            sequence=self.encoded_frames & 0xffffffff\n            wire=b''.join(split_unit(jpeg,self._session,sequence))\n            with self._lock:\n                if len(self._queue)>=1:self._queue.popleft();self.dropped_frames+=1\n                self._queue.append(wire)\n                self.encoded_frames+=1;self.encoded_bytes+=len(jpeg)\n                self._latest=(self.encoded_frames,jpeg)\n                self._last_quality=quality;self._last_size=len(jpeg);self._tx_size=(image.width(),image.height())\n\
+      \                self._last_frame=time.monotonic()\n        except Exception as exc:\n            self._error=str(exc)\n\n    def get_latest_frame(self):\n        with self._lock:return self._latest\n\n    def get_original_frame(self):\n        with self._lock:return self._original\n\n    def get_status(self):\n        if self._error:return self._error\n        if self._last_frame and time.monotonic()-self._last_frame>3:return 'Camera image lost: check whether another program is using the camera'\n        cw,ch=self._capture_size;tw,th=self._tx_size\n        return (f'{self._camera_label} | Original {cw}x{ch} | Over the air {tw}x{th}, target {self._fps} fps'\n                f' | JPEG quality {self._last_quality}, {self._last_size/1024:.1f}KB'\n                f' | Encoded {self.encoded_frames} | Dropped (overload) {self.dropped_frames} | Too large, not sent {self.oversize_frames}')\n\n    def work(self,input_items,output_items):\n        out=output_items[0]\n        if self._consumed_bytes\
+      \ is not None:\n            # Limit bytes ahead of the actual hardware consumer, even when the OS\n            # rounds GNU Radio buffers up to 64 KiB. The radio remains the clock.\n            credit=16384+int(self._consumed_bytes())-int(self.nitems_written(0))\n            wait_until=time.monotonic()+0.05\n            while credit<=0 and time.monotonic()<wait_until:\n                time.sleep(0.001)\n                credit=16384+int(self._consumed_bytes())-int(self.nitems_written(0))\n            if credit<=0:\n                return 0\n            out=out[:min(len(out),4096,credit)]\n        written=0\n        while written<len(out):\n            if self._position==len(self._pending):\n                with self._lock:self._pending=self._queue.popleft() if self._queue else self._idle\n                self._position=0;self.sent_packets+=len(self._pending)//WIRE_SIZE\n            count=min(len(out)-written,len(self._pending)-self._position)\n            out[written:written+count]=np.frombuffer(self._pending,dtype=np.uint8,count=count,offset=self._position)\n\
+      \            written+=count;self._position+=count\n        return written\n"
+    affinity: ''
+    alias: ''
+    camera_name: camera_name
+    comment: ''
+    jpeg_quality: jpeg_quality
+    max_frame_bytes: max_frame_bytes
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    radio_bitrate: bit_rate
+    source_mode: source_mode
+    video_fps: video_fps
+    video_height: video_height
+    video_width: video_width
+  states:
+    _io_cache: ('Camera Live Stream (Qt/JPEG)', 'VideoSource', [('source_mode', "'camera'"), ('camera_name', "'default'"), ('video_width', '320'), ('video_height', '240'), ('video_fps', '8'), ('jpeg_quality', '65'), ('max_frame_bytes', '10000'), ('radio_bitrate', '1024000')], [], [('0', 'byte', 1)], 'Self-contained Windows camera -> JPEG video stream. F5 starts capture.', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 8
+    - 356.0
+    rotation: 0
+    state: enabled
+- name: monitor_tabs
+  id: qtgui_tab_widget
+  parameters:
+    alias: ''
+    comment: ''
+    gui_hint: 1,0,1,4
+    label0: Live video
+    label1: Constellation and spectrum
+    label10: Tab 10
+    label11: Tab 11
+    label12: Tab 12
+    label13: Tab 13
+    label14: Tab 14
+    label15: Tab 15
+    label16: Tab 16
+    label17: Tab 17
+    label18: Tab 18
+    label19: Tab 19
+    label2: Time domain before and after modulation
+    label3: Tab 3
+    label4: Tab 4
+    label5: Tab 5
+    label6: Tab 6
+    label7: Tab 7
+    label8: Tab 8
+    label9: Tab 9
+    num_tabs: '3'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 976
+    - 92.0
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_1
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: 0,2,1,2
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: monitor_tabs@2:0,1,1,1
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"After modulation"'
+    nconnections: '1'
+    size: '2048'
+    srate: samp_rate_after_constellation
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1.5'
+    ymin: '-1.5'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 2056
+    - 380.0
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_1_1_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: 0,0,1,2
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: monitor_tabs@2:0,0,1,1
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"Before modulation"'
+    nconnections: '1'
+    size: '2048'
+    srate: int(bit_rate/8)
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '1'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '200'
+    ymin: '-200'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 2032
+    - 228.0
+    rotation: 0
+    state: enabled
+- name: r2_sink
+  id: iio_pluto_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    attenuation1: tx_attenuation
+    bandwidth: bandwidth
+    buffer_size: '32768'
+    comment: ''
+    cyclic: 'False'
+    filter: ''''''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: int(freq)
+    fstop: '0'
+    len_tag_key: ''''''
+    samplerate: samp_rate_after_constellation
+    type: fc32
+    uri: tx_uri
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1248
+    - 340.0
+    rotation: 0
+    state: enabled
+- name: reduce_video_buffering
+  id: snippet
+  parameters:
+    alias: ''
+    code: "# Keep scheduler batches small; Windows rounds byte buffers to at least 64 KiB.\nfor name in ('blocks_char_to_float_0_0_1_0','blocks_unpack_k_bits_bb_0',\n             'blocks_throttle2_1','channels_channel_model_0',\n             'digital_pfb_clock_sync_xxx_0','digital_linear_equalizer_0',\n             'digital_costas_loop_cc_0','digital_constellation_decoder_cb_0',\n             'digital_diff_decoder_bb_0','digital_map_bb_0'):\n    block=getattr(self,name,None)\n    if block is not None:\n        if hasattr(block,'set_max_noutput_items'):block.set_max_noutput_items(8192)\nmodulator=getattr(self,'digital_constellation_modulator_0',None)\nif modulator is not None:\n    for name in ('bytes2chunks','symbol_mapper','diffenc','chunks2symbols','rrc_filter'):\n        block=getattr(modulator,name,None)\n        if block is not None:\n            block.set_max_noutput_items(8192)\nsource=getattr(self,'epy_block_1',None)\nif source is not None:\n    consumer=getattr(self,'r2_sink',None)\n\
+      \    if consumer is None:consumer=getattr(self,'blocks_throttle2_1',None)\n    if consumer is not None:\n        samples_per_byte=4*float(self.sps)\n        source._consumed_bytes=lambda: consumer.nitems_read(0)/samples_per_byte"
+    comment: ''
+    priority: '0'
+    section: main_after_init
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1592
+    - 100.0
+    rotation: 0
+    state: enabled
+- name: tx_constellation
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"red"'
+    color2: '"red"'
+    color3: '"red"'
+    color4: '"red"'
+    color5: '"red"'
+    color6: '"red"'
+    color7: '"red"'
+    color8: '"red"'
+    color9: '"red"'
+    comment: 7,6,1,2
+    grid: 'True'
+    gui_hint: monitor_tabs@1:0,0,1,1
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'False'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '''TX I/Q constellation (after RRC shaping)'''
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 856
+    - 304.0
+    rotation: 0
+    state: enabled
+- name: tx_spectrum
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate_after_constellation
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: 0,4,1,4
+    ctrlpanel: 'False'
+    fc: freq
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'True'
+    gui_hint: monitor_tabs@1:0,1,1,1
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '''TX spectrum'''
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '20'
+    ymin: '-120'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 912
+    - 580.0
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: o2
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 944
+    - 500.0
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1_0_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: o1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 400
+    - 532.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_1_0_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: o1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1512
+    - 260.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_1_0_0_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: o2
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1544
+    - 412.0
+    rotation: 0
+    state: enabled
+connections:
+- - blocks_char_to_float_0_0_1_0
+  - '0'
+  - qtgui_time_sink_x_1_1_0
+  - '0'
+- - digital_constellation_modulator_0
+  - '0'
+  - r2_sink
+  - '0'
+- - digital_constellation_modulator_0
+  - '0'
+  - tx_constellation
+  - '0'
+- - digital_constellation_modulator_0
+  - '0'
+  - tx_spectrum
+  - '0'
+- - digital_constellation_modulator_0
+  - '0'
+  - virtual_sink_1_0
+  - '0'
+- - epy_block_1
+  - '0'
+  - digital_constellation_modulator_0
+  - '0'
+- - epy_block_1
+  - '0'
+  - virtual_sink_1_0_0
+  - '0'
+- - virtual_source_1_0_0
+  - '0'
+  - blocks_char_to_float_0_0_1_0
+  - '0'
+- - virtual_source_1_0_0_0
+  - '0'
+  - qtgui_time_sink_x_1
+  - '0'
+metadata:
+  file_format: 1
+  grc_version: 3.10.12.0

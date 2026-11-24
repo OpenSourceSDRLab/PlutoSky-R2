@@ -1,0 +1,1767 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: Custom
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: r2_loopback
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Board Loopback Test
+    window_size: (1440, 900)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 0
+    - 4.0
+    rotation: 0
+    state: enabled
+blocks:
+- name: bandwidth
+  id: variable
+  parameters:
+    comment: ''
+    value: int(symbol_rate*1.2)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 200
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: bit_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 1000*one_frame_data*8
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 320
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: button_msg
+  id: variable_qtgui_toggle_button_msg
+  parameters:
+    comment: 2,2,2,2
+    gui_hint: 1,0,1,2
+    initPressed: 'False'
+    label: '"Debug / Send File"'
+    outputmsgname: value
+    pressBackgroundColor: default
+    pressFontColor: default
+    pressed: '1'
+    relBackgroundColor: default
+    relFontColor: default
+    released: '0'
+    type: int
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 8
+    - 164.0
+    rotation: 0
+    state: enabled
+- name: excess_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.35'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 440
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: file_name
+  id: variable
+  parameters:
+    comment: ''
+    value: '''sample.mp4'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 552
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 2.0e9
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 776
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: nfilts
+  id: variable
+  parameters:
+    comment: ''
+    value: '32'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 864
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: one_frame_data
+  id: variable
+  parameters:
+    comment: ''
+    value: len(preamble)+4*repet+(payload_data_len)*repet
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 960
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: output_file_name
+  id: variable
+  parameters:
+    comment: ''
+    value: '''received.mp4'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1112
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: payload_data_len
+  id: variable
+  parameters:
+    comment: ''
+    value: '36'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 0
+    - 96.0
+    rotation: 0
+    state: enabled
+- name: phase_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.0628'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 416
+    - 80.0
+    rotation: 0
+    state: enabled
+- name: preamble
+  id: variable
+  parameters:
+    comment: ''
+    value: '[0xac, 0xdd, 0xa4, 0xe2, 0xf2, 0x8c, 0x20, 0xfc]'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1344
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: qpsk
+  id: variable_constellation_rect
+  parameters:
+    comment: ''
+    const_points: '[0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]'
+    imag_sect: '2'
+    precision: '8'
+    real_sect: '2'
+    rot_sym: '4'
+    soft_dec_lut: None
+    sym_map: '[0, 1, 2, 3]'
+    w_imag_sect: '1'
+    w_real_sect: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1552
+    - 8.0
+    rotation: 0
+    state: enabled
+- name: repet
+  id: variable
+  parameters:
+    comment: ''
+    value: '3'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 144
+    - 96.0
+    rotation: 0
+    state: enabled
+- name: rrc_taps
+  id: variable
+  parameters:
+    comment: ''
+    value: firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), 0.35, 11*sps*nfilts)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 224
+    - 96.0
+    rotation: 0
+    state: enabled
+- name: rx_uri
+  id: variable
+  parameters:
+    comment: ''
+    value: '''ip:192.168.2.1'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1392
+    - 80.0
+    rotation: 0
+    state: enabled
+- name: samp_rate_after_constellation
+  id: variable
+  parameters:
+    comment: ''
+    value: int(symbol_rate*sps)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 696
+    - 144.0
+    rotation: 0
+    state: enabled
+- name: sps
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 816
+    - 72.0
+    rotation: 0
+    state: enabled
+- name: symbol_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: bit_rate/2
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 688
+    - 80.0
+    rotation: 0
+    state: enabled
+- name: tx_attenuation
+  id: variable
+  parameters:
+    comment: ''
+    value: '10.0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1248
+    - 72.0
+    rotation: 0
+    state: enabled
+- name: tx_uri
+  id: variable
+  parameters:
+    comment: ''
+    value: '''ip:192.168.2.1'''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1096
+    - 80.0
+    rotation: 0
+    state: enabled
+- name: uhd_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: '2,0,1,2
+
+      uhd gain: (0~70)'
+    gui_hint: 1,2,1,2
+    label: RX Gain (dB)
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: int
+    start: '0'
+    step: '1'
+    stop: '70'
+    value: '35'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 544
+    - 76.0
+    rotation: 0
+    state: enabled
+- name: variable_adaptive_algorithm
+  id: variable_adaptive_algorithm
+  parameters:
+    comment: ''
+    cons: qpsk
+    delta: '10.0'
+    ffactor: '0.99'
+    modulus: '4'
+    step_size: '0.001'
+    type: cma
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 904
+    - 76.0
+    rotation: 0
+    state: enabled
+- name: blocks_char_to_float_0_0_1_0
+  id: blocks_char_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: '1'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 328
+    - 1256.0
+    rotation: 0
+    state: enabled
+- name: blocks_unpack_k_bits_bb_0
+  id: blocks_unpack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: '1-byte input, 2-byte output
+
+      the low 2 bits of one byte are output as 2 bytes
+
+      LSB'
+    k: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1016
+    - 504.0
+    rotation: 0
+    state: enabled
+- name: digital_constellation_decoder_cb_0
+  id: digital_constellation_decoder_cb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 240
+    - 576.0
+    rotation: 0
+    state: enabled
+- name: digital_constellation_modulator_0
+  id: digital_constellation_modulator
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    differential: 'True'
+    excess_bw: excess_bw
+    log: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_symbol: sps
+    truncate: 'False'
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 904
+    - 188.0
+    rotation: 0
+    state: enabled
+- name: digital_costas_loop_cc_0
+  id: digital_costas_loop_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    order: '4'
+    use_snr: 'False'
+    w: phase_bw
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 928
+    - 360.0
+    rotation: 0
+    state: enabled
+- name: digital_diff_decoder_bb_0
+  id: digital_diff_decoder_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    coding: digital.DIFF_DIFFERENTIAL
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    modulus: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 512
+    - 456.0
+    rotation: 0
+    state: enabled
+- name: digital_linear_equalizer_0
+  id: digital_linear_equalizer
+  parameters:
+    adapt_after_training: 'True'
+    affinity: ''
+    alg: variable_adaptive_algorithm
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_taps: '15'
+    sps: '2'
+    training_sequence: '[ ]'
+    training_start_tag: corr_est
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 600
+    - 344.0
+    rotation: 0
+    state: enabled
+- name: digital_map_bb_0
+  id: digital_map_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    map: '[0,1,2,3]'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 784
+    - 464.0
+    rotation: 0
+    state: enabled
+- name: digital_pfb_clock_sync_xxx_0
+  id: digital_pfb_clock_sync_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    filter_size: nfilts
+    init_phase: '0'
+    loop_bw: 2*3.14/100.0
+    max_dev: '0.5'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    osps: '2'
+    sps: sps
+    taps: rrc_taps
+    type: ccf
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 272
+    - 296.0
+    rotation: 0
+    state: enabled
+- name: epy_block_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved, GRC will instantiate the first class it finds\nto get ports and parameters of your block. The arguments to __init__  will\nbe the parameters. All of them are required to have default values!\n\"\"\"\n\nimport numpy as np\nfrom gnuradio import gr\nimport struct\nimport zlib\n\n\nclass blk_cal_error(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block\n    \"\"\"Embedded Python Block example - a simple multiply const\"\"\"\n\n    def __init__(self, preamble=[], payload_data_len = 36, risks = 0.3, repet = 3, file_name = 'output.wav', debug = False):  # only default arguments here\n        \"\"\"arguments to this function show up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n            self,\n            name='cal_error',   # will show up in GRC\n            in_sig=[np.int8],\n            out_sig=[np.float32]\n        )\n        # if an attribute with the same name\
+      \ as a parameter is found,\n        # a callback is registered (properties work, too).\n        self.preamble = preamble\n        self.preamble_bits = []\n        self.preamble_bits_num = 0\n        self.payload_data_len = payload_data_len\n        self.total_num = 0\n        self.total_error_num = 0\n        self.datas_0 = []\n        self.datas_1 = []\n        self.repet = repet\n        self.header_len = 4\n        self.datas_one_frame_num = (len(preamble)+(self.header_len+payload_data_len)*repet)*8\n        self.debug = debug\n        self.risks = risks # error tolerance when matching the header (the header needs some tolerance, otherwise it cannot be located under interference)\n        \n        self.file_start = 0\n        self.total_file_frame_num = 0\n        self._file_name = file_name\n        self.file = None\n        self.encoded_received = 0\n        self.encoded_crc = 0\n        self.file_complete = False\n        self.file_crc_ok = False\n        \n        self.file_info_bits\
+      \ = []\n        self.file_info_len = 0\n        self.file_info_crc = 0\n        self.zero_wait = 0 # run-length encoding of zeros\n        \n        for byte in self.preamble:\n            for i in range(7, -1, -1):\n                bit = (byte >> i) & 1\n                self.preamble_bits.append(float(bit))\n        self.preamble_bits_num = len(self.preamble_bits)\n        self.header_bits_num = self.header_len*repet*8\n              \n\n    def start(self):\n        self.file = open(self._file_name, 'wb')\n        return True\n\n    def stop(self):\n        if self.file is not None and not self.file.closed:\n            self.file.close()\n        return True\n\n    def find_preamble(self, datas):\n        #print(datas[0:5])\n        #print(self.preamble_bits[0:5])\n        #print((datas[0]-0.5)*(self.preamble_bits[0]-0.5))\n\n        # find preamble\n        total_num = len(datas)\n        #if total_num > self.preamble_bits_num*3:\n        #    total_num = self.preamble_bits_num*3\n\
+      \            \n        for i in range(total_num - self.preamble_bits_num + 1):\n            error_num = 0\n            for j in range(self.preamble_bits_num):\n                if (datas[i+j]-0.5)*(self.preamble_bits[j]-0.5) < 0:\n                    error_num = error_num + 1\n                    if error_num >= self.preamble_bits_num*self.risks:\n                        break\n                        \n            if error_num <  self.preamble_bits_num*self.risks:\n                return i\n\n        return -1\n    \n    def repet_dcode(self,datas,repet_num):\n        int_datas = [int(bit) for bit in datas]\n        datas_len = len(int_datas)\n        if datas_len % repet_num != 0:#invalid data: length is not a multiple of repet_num\n            print(\"Invalid data length!\")\n            exit(0)\n        else:\n            o_datas_len = int(datas_len/repet_num)\n            o_datas = [0]*o_datas_len\n            for idx in range(o_datas_len):\n                zero_num = 0\n     \
+      \           for x in range(repet_num):\n                    if int_datas[o_datas_len*x+idx] == 0:\n                        zero_num += 1\n                if repet_num >= 2*zero_num:\n                    o_datas[idx] = 1\n            return o_datas\n                    \n    def write_real_data_into_file(self, real_data_array):\n        # Same zero-run wire format as the B210 example; trim only final padding.\n        if self.file_complete or not self.file_info_len:\n            return\n        encoded = np.packbits(np.asarray(real_data_array, dtype=np.uint8)).tobytes()\n        encoded = encoded[:max(0, self.file_info_len-self.encoded_received)]\n        self.encoded_received += len(encoded)\n        self.encoded_crc = zlib.crc32(encoded, self.encoded_crc) & 0xffffffff\n        decoded = bytearray()\n        for value in encoded:\n            if self.zero_wait:\n                decoded.extend(bytes(value))\n                self.zero_wait = 0\n            elif value == 0:\n        \
+      \        self.zero_wait = 1\n            else:\n                decoded.append(value)\n        self.file.write(decoded)\n        self.file.flush()\n        if self.encoded_received == self.file_info_len:\n            self.file_crc_ok = self.encoded_crc == self.file_info_crc and self.zero_wait == 0\n            self.file_complete = True\n            self.file.close()\n\n    def cal_error(self):\n        if self.file_complete:\n            self.datas_0 = []\n            return\n        total0_num = len(self.datas_0)\n        \n        # find preamble\n        index_0 = self.find_preamble(self.datas_0)\n        \n        \n        if index_0 == -1 and total0_num > 4096:\n            self.datas_0 = []\n            print(index_0,total0_num,'\\n')\n                \n        # have at least one frame\n        if index_0 != -1:\n            if index_0 + self.datas_one_frame_num <= total0_num:                \n                header0 = self.repet_dcode(self.datas_0[index_0+self.preamble_bits_num:index_0+self.preamble_bits_num+self.header_bits_num],self.repet)\n\
+      \                header_bits0 = ''.join(str(int(bit)) for bit in header0)\n                index0_sn = int(header_bits0, 2)\n                if self.debug == True:\n                    print('sn:%d, in0:%d, %d, payload_datas = %d (bits)' %(index0_sn, index_0, total0_num, self.payload_data_len*8))\n                \n                # cache the file info: the first 8 bytes of the packet with sn == 1\n                if self.file_start == 1 and index0_sn == 1:\n                    self.file_info_bits = np.append(self.file_info_bits,self.datas_0[index_0+self.preamble_bits_num+self.header_bits_num:index_0+self.preamble_bits_num+self.header_bits_num+8*8])\n                if self.file_start == 1 and index0_sn == 2:\n                    file_info = self.repet_dcode(self.file_info_bits,int(len(self.file_info_bits)/(8*8)))\n                    file_info_len_bits = ''.join(str(int(bit)) for bit in file_info[0:32])\n                    file_info_crc_bits = ''.join(str(int(bit)) for bit in file_info[32:64])\n\
+      \                    print(file_info_len_bits,file_info_crc_bits)\n                    self.file_info_len = int(file_info_len_bits, 2)\n                    self.file_info_crc = int(file_info_crc_bits, 2)\n                    \n                \n                if (self.file_start != 0 and index0_sn == self.file_start + 1) or (index0_sn > 10 and self.file_info_len != 0):\n                    # sometimes a few packets are lost; fill the gap with zeros (the received file then still looks mostly normal)\n                    if index0_sn > self.file_start + 1:\n                        lose = index0_sn - self.file_start - 1\n                        if lose > 0 and lose < 3:\n                            for x in range(lose):\n                                self.total_file_frame_num += 1\n                                self.write_real_data_into_file([0]*self.payload_data_len)\n                                \n                    self.total_file_frame_num += 1\n                    self.write_real_data_into_file(self.repet_dcode(self.datas_0[index_0+self.preamble_bits_num+self.header_bits_num:index_0+self.datas_one_frame_num],self.repet))\n\
+      \                    # print(\"total_file_frame_num:%d, file_data_len:%d, file_data_crc:0x%x\" %(self.total_file_frame_num,self.file_info_len,self.file_info_crc))\n                        \n                self.file_start = index0_sn\n\n                \n                # cut the one frame\n                self.datas_0 = self.datas_0[index_0+self.datas_one_frame_num:]\n              \n                self.cal_error()\n            \n    def work(self, input_items, output_items):\n        \"\"\"example: multiply with constant\"\"\"\n        o_len = len(output_items[0])\n        \n        # buffer the input datas\n        self.datas_0 = np.append(self.datas_0,input_items[0])\n        \n        self.cal_error()\n        \n        if self.file_info_len != 0:\n            progress = min(99.9, 100.0*self.encoded_received/self.file_info_len)\n            if self.file_complete and self.file_crc_ok:\n                progress = 100.0\n            output_items[0][:] = progress\n            #print(o_len,self.total_file_frame_num,self.total_file_frame_num*self.payload_data_len,self.file_info_len,self.file_start)\n\
+      \        else:\n            output_items[0][:] = [0.0]*o_len\n        \n            \n        return len(output_items[0])\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    debug: 'False'
+    file_name: output_file_name
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    payload_data_len: payload_data_len
+    preamble: preamble
+    repet: repet
+    risks: '0.1'
+  states:
+    _io_cache: ('cal_error', 'blk_cal_error', [('preamble', '[]'), ('payload_data_len', '36'), ('risks', '0.3'), ('repet', '3'), ('file_name', "'output.wav'"), ('debug', 'False')], [('0', 'byte', 1)], [('0', 'float', 1)], 'Embedded Python Block example - a simple multiply const', ['debug', 'payload_data_len', 'preamble', 'repet', 'risks'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1424
+    - 420.0
+    rotation: 0
+    state: enabled
+- name: epy_block_1
+  id: epy_block
+  parameters:
+    _source_code: "#!/usr/bin/env python\n# coding=utf-8\n\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved, GRC will instantiate the first class it finds\nto get ports and parameters of your block. The arguments to __init__  will\nbe the parameters. All of them are required to have default values!\n\"\"\"\n\nimport numpy as np\nfrom gnuradio import gr\nimport time\nimport zlib\nimport pmt\n\n\nclass epb_blk(gr.sync_block):  # other base classes are basic_block, decim_block, interp_block\n    \"\"\"Embedded Python Block example - a simple multiply const\"\"\"\n\n    def __init__(self, file_path=\"\", payload_data_len=36, preamble=[0xac, 0xdd, 0xa4, 0xe2, 0xf2, 0x8c, 0x20, 0xfc], n_zero_frame=3, repet=3):  # only default arguments here\n        \"\"\"arguments to this function show up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n                self,\n                name='MyFileSink',   # will show up in GRC\n                in_sig=None,\n                out_sig=[np.uint8]\n\
+      \                )\n                \n        # if an attribute with the same name as a parameter is found,\n        # a callback is registered (properties work, too).\n        self.in_port_name = 'test/transfer'\n        self.message_port_register_in(pmt.intern(self.in_port_name))\n        self.set_msg_handler(pmt.intern(self.in_port_name), self.handle_msg)\n        \n        self.file_data = []\n        self.test_data = []\n        self.current_position = 0\n        self.test_current_position = 0\n        self.test = 1\n        \n        # TEST MODE DATAS: build the debug frames\n        self.test_data.extend(preamble)\n        self.test_data.extend([0, 0, 0, 0]*repet)\n        self.test_data.extend([(x&0xFF) for x in range(payload_data_len)]*repet)\n        self.test_data_len = len(self.test_data)\n        \n        self._file_path = file_path\n        self._build_preamble = list(preamble)\n        self._build_payload_len = payload_data_len\n        self._build_n_zero_frame = n_zero_frame\n\
+      \        self._build_repet = repet\n        self.file_data_len = 0\n\n    def start(self):\n        file_path = self._file_path\n        preamble = self._build_preamble\n        payload_data_len = self._build_payload_len\n        n_zero_frame = self._build_n_zero_frame\n        repet = self._build_repet\n        self.file_data = []\n        self.current_position = 0\n        # SEND MODE DATAS: build the file data frames\n        with open(file_path, 'rb') as file:\n            file_data = file.read()\n            file_data_len = len(file_data)\n            file_data_crc32 = zlib.crc32(file_data) & 0xFFFFFFFF\n            file_data_pos = 0\n            \n            # 1) run-length encode the zeros in file_data (n consecutive zeros become 0 + the number of zeros, when the number > 0xff)\n            tmp_data = []\n            zero_num = 0\n            for d in file_data:\n                if d == 0:\n                    zero_num += 1\n                    if zero_num > 0xff:\n       \
+      \                 tmp_data.append(0x00)\n                        tmp_data.append(0xff)\n                        zero_num -= 0xff\n                else:\n                    if zero_num == 0:\n                        tmp_data.append(d) \n                    else:\n                        tmp_data.append(0)\n                        tmp_data.append(zero_num)\n                        tmp_data.append(d) \n                        zero_num = 0\n\n            if zero_num:\n                tmp_data.extend([0, zero_num])\n\n            tmp_data_len = len(tmp_data)    \n            tmp_data_crc32 =  zlib.crc32(bytes(tmp_data)) & 0xFFFFFFFF\n\n            tmp_data_pos = 0\n\n            frame_num = 1\n            # 1) fill in the header (file header)\n            # n_zero_frame\n            # leading empty frames, so that the receiver can lock onto the start of the file\n            # preamble + [4bytes frame_num]*repet + [4bytes total_data_len + 4bytes total_data_crc32 + [0x55]*(payload_data_len*repet-8)]\n\
+      \            for idx in range(n_zero_frame):\n                self.file_data.extend(preamble)\n                self.file_data.extend([(frame_num>>24) & 0xFF, (frame_num>>16) & 0xFF, (frame_num>>8) & 0xFF, (frame_num>>0) & 0xFF]*repet)\n                self.file_data.extend([(tmp_data_len>>24) & 0xFF, (tmp_data_len>>16) & 0xFF, (tmp_data_len>>8) & 0xFF, (tmp_data_len>>0) & 0xFF, (tmp_data_crc32>>24) & 0xFF, (tmp_data_crc32>>16) & 0xFF, (tmp_data_crc32>>8) & 0xFF, (tmp_data_crc32>>0) & 0xFF])\n                self.file_data.extend([0x55]*(payload_data_len*repet-8))\n\n            frame_num = 2\n            # 2) n frames\n            left = tmp_data_len\n            read = 0\n            while left > 0:\n                if left >= payload_data_len:\n                    self.file_data.extend(preamble)\n                    self.file_data.extend([(frame_num>>24) & 0xFF, (frame_num>>16) & 0xFF, (frame_num>>8) & 0xFF, (frame_num>>0) & 0xFF]*repet)\n                    self.file_data.extend(tmp_data[read:read+payload_data_len]*repet)\n\
+      \                    if frame_num < 10:\n                        self.file_data.extend(preamble)\n                        self.file_data.extend([(frame_num>>24) & 0xFF, (frame_num>>16) & 0xFF, (frame_num>>8) & 0xFF, (frame_num>>0) & 0xFF]*repet)\n                        self.file_data.extend(tmp_data[read:read+payload_data_len]*repet)\n                    left -= payload_data_len\n                else:# remainder: pad with zeros to form 1 frame\n                    self.file_data.extend(preamble)\n                    self.file_data.extend([(frame_num>>24) & 0xFF, (frame_num>>16) & 0xFF, (frame_num>>8) & 0xFF, (frame_num>>0) & 0xFF]*repet)\n                    # self.file_data.extend(tmp_data[read:read+left]*repet)\n                    # self.file_data.extend([0]*((payload_data_len-left)*repet))\n                    segment = tmp_data[read:read+left] + [0] * (payload_data_len - left)\n                    self.file_data.extend(segment * repet)\n                    left = 0\n        \
+      \       \n                frame_num += 1\n                read += payload_data_len\n                # print(f\"left:{left}, frame_num:{frame_num}, read:{read}, file_data_len:{len(self.file_data)}\")\n            self.file_data_len = len(self.file_data)\n            print(\"total file data len:%d->%d, pre_file_frame_num:%d, frame num:%d\" %(tmp_data_len, self.file_data_len, n_zero_frame, frame_num))\n\n        return True\n\n    def handle_msg(self, msg):\n        x = pmt.to_python(msg)[1]\n        if x == 1:\n            self.current_position = 0\n            self.test = 0\n        else:\n            self.test = 1\n        #print(pmt.to_python(msg)[1])\n         \n    def work(self, input_items, output_items):\n        # Check if there is enough data left in the file\n        o_len = len(output_items[0])\n        #print(\">>>>>\",o_len)\n        if self.test == 1:\n            for idx in range(0,o_len,self.test_data_len):\n                left = o_len - idx\n                if left\
+      \ >= self.test_data_len:\n                    output_items[0][idx:idx+self.test_data_len] = (self.test_data*2)[self.test_current_position:self.test_current_position+self.test_data_len]\n                    self.test_current_position += self.test_data_len\n                    self.test_current_position %= self.test_data_len\n                else:\n                    #print(left)\n                    output_items[0][idx:idx+left] = (self.test_data*2)[self.test_current_position:self.test_current_position+left]\n                    self.test_current_position += left\n                    self.test_current_position %= self.test_data_len\n        else:\n            left = self.file_data_len - self.current_position\n            #print(o_len,left)\n            if left >= o_len:\n                output_items[0][0:o_len] = self.file_data[self.current_position:self.current_position+o_len]\n                self.current_position += o_len\n            elif left > 0:\n                output_items[0][0:left]\
+      \ = self.file_data[self.current_position:self.current_position+left]\n                output_items[0][left:] = [0]*(o_len-left)\n                self.current_position += left\n                self.test = 1\n            else:\n                self.test = 1\n\n        return len(output_items[0]) \n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    file_path: file_name
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    n_zero_frame: '5'
+    payload_data_len: payload_data_len
+    preamble: preamble
+    repet: repet
+  states:
+    _io_cache: ('MyFileSink', 'epb_blk', [('file_path', "''"), ('payload_data_len', '36'), ('preamble', '[172, 221, 164, 226, 242, 140, 32, 252]'), ('n_zero_frame', '3'), ('repet', '3')], [('test/transfer', 'message', 1)], [('0', 'byte', 1)], 'Embedded Python Block example - a simple multiply const', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 344
+    - 172.0
+    rotation: 0
+    state: enabled
+- name: process
+  id: qtgui_number_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    autoscale: 'False'
+    avg: '0'
+    color1: ("blue", "red")
+    color10: ("black", "black")
+    color2: ("black", "black")
+    color3: ("black", "black")
+    color4: ("black", "black")
+    color5: ("black", "black")
+    color6: ("black", "black")
+    color7: ("black", "black")
+    color8: ("black", "black")
+    color9: ("black", "black")
+    comment: ''
+    factor1: '1'
+    factor10: '1'
+    factor2: '1'
+    factor3: '1'
+    factor4: '1'
+    factor5: '1'
+    factor6: '1'
+    factor7: '1'
+    factor8: '1'
+    factor9: '1'
+    graph_type: qtgui.NUM_GRAPH_HORIZ
+    gui_hint: 1,4,1,4
+    label1: '"File reception"'
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    max: '100'
+    min: '0'
+    name: '"Reception progress"'
+    nconnections: '1'
+    type: float
+    unit1: '"%"'
+    unit10: ''
+    unit2: ''
+    unit3: ''
+    unit4: ''
+    unit5: ''
+    unit6: ''
+    unit7: ''
+    unit8: ''
+    unit9: ''
+    update_time: '0.10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1704
+    - 388.0
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"red"'
+    color2: '"red"'
+    color3: '"red"'
+    color4: '"red"'
+    color5: '"red"'
+    color6: '"red"'
+    color7: '"red"'
+    color8: '"red"'
+    color9: '"red"'
+    comment: 7,6,1,2
+    grid: 'True'
+    gui_hint: 7,6,1,2
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'False'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"Costas loop"'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1680
+    - 732.0
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0_0_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"red"'
+    color2: '"red"'
+    color3: '"red"'
+    color4: '"red"'
+    color5: '"red"'
+    color6: '"red"'
+    color7: '"red"'
+    color8: '"red"'
+    color9: '"red"'
+    comment: 7,0,1,2
+    grid: 'True'
+    gui_hint: 7,0,1,2
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'False'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"Raw received samples"'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 768
+    - 636.0
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0_0_1_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"red"'
+    color2: '"red"'
+    color3: '"red"'
+    color4: '"red"'
+    color5: '"red"'
+    color6: '"red"'
+    color7: '"red"'
+    color8: '"red"'
+    color9: '"red"'
+    comment: 7,2,1,2
+    grid: 'True'
+    gui_hint: 7,2,1,2
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'False'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"Timing synchronization"'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1680
+    - 644.0
+    rotation: 0
+    state: enabled
+- name: qtgui_const_sink_x_0_0_2
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"red"'
+    color2: '"red"'
+    color3: '"red"'
+    color4: '"red"'
+    color5: '"red"'
+    color6: '"red"'
+    color7: '"red"'
+    color8: '"red"'
+    color9: '"red"'
+    comment: 7,4,1,2
+    grid: 'True'
+    gui_hint: 7,4,1,2
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'False'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"Linear equalization"'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 768
+    - 724.0
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate_after_constellation
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: 0,4,1,4
+    ctrlpanel: 'False'
+    fc: int(freq)
+    fftsize: '1024'
+    freqhalf: 'True'
+    grid: 'True'
+    gui_hint: 0,4,1,4
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '"Received spectrum"'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1680
+    - 540.0
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_1
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: 0,2,1,2
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: 0,2,1,2
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"After modulation"'
+    nconnections: '1'
+    size: int(one_frame_data*16*2.5)
+    srate: samp_rate_after_constellation
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1.5'
+    ymin: '-1.5'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 768
+    - 532.0
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_1_1_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: 0,0,1,2
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: 0,0,1,2
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"Before modulation"'
+    nconnections: '1'
+    size: int(one_frame_data*2.5)
+    srate: int(bit_rate/8)
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '1'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '200'
+    ymin: '-200'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 648
+    - 1260.0
+    rotation: 0
+    state: enabled
+- name: r2_sink
+  id: iio_pluto_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    attenuation1: tx_attenuation
+    bandwidth: bandwidth
+    buffer_size: '32768'
+    comment: ''
+    cyclic: 'False'
+    filter: ''''''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: int(freq)
+    fstop: '0'
+    len_tag_key: ''''''
+    samplerate: samp_rate_after_constellation
+    type: fc32
+    uri: tx_uri
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1608
+    - 192.0
+    rotation: 0
+    state: enabled
+- name: r2_source
+  id: iio_pluto_source
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: bandwidth
+    bbdc: 'True'
+    buffer_size: '32768'
+    comment: ''
+    filter: ''''''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: int(freq)
+    fstop: '0'
+    gain1: '''manual'''
+    len_tag_key: ''''''
+    manual_gain1: uhd_gain
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    quadrature: 'True'
+    rfdc: 'True'
+    samplerate: samp_rate_after_constellation
+    type: fc32
+    uri: rx_uri
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 8
+    - 308.0
+    rotation: 0
+    state: enabled
+- name: virtual_sink_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: rx_data
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1224
+    - 280.0
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: t1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 272
+    - 488.0
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: o2
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1232
+    - 144.0
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1_0_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: o1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 608
+    - 240.0
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1_0_0_0_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: t5
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 912
+    - 304.0
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1_0_0_0_0_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: t6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1232
+    - 368.0
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1_0_0_0_0_1
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: t4
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 752
+    - 272.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: rx_data
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 16
+    - 576.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: t1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 552
+    - 632.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_1_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: t1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1416
+    - 568.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_1_0_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: o1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 88
+    - 1256.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_1_0_0_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: o2
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 552
+    - 560.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_1_1_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: t4
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1416
+    - 640.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_1_2
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: t5
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 552
+    - 744.0
+    rotation: 0
+    state: enabled
+- name: virtual_source_1_2_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: t6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate:
+    - 1424
+    - 752.0
+    rotation: 0
+    state: enabled
+connections:
+- - blocks_char_to_float_0_0_1_0
+  - '0'
+  - qtgui_time_sink_x_1_1_0
+  - '0'
+- - blocks_unpack_k_bits_bb_0
+  - '0'
+  - epy_block_0
+  - '0'
+- - button_msg
+  - state
+  - epy_block_1
+  - test/transfer
+- - digital_constellation_decoder_cb_0
+  - '0'
+  - digital_diff_decoder_bb_0
+  - '0'
+- - digital_constellation_modulator_0
+  - '0'
+  - r2_sink
+  - '0'
+- - digital_constellation_modulator_0
+  - '0'
+  - virtual_sink_1_0
+  - '0'
+- - digital_costas_loop_cc_0
+  - '0'
+  - virtual_sink_0
+  - '0'
+- - digital_costas_loop_cc_0
+  - '0'
+  - virtual_sink_1_0_0_0_0_0
+  - '0'
+- - digital_diff_decoder_bb_0
+  - '0'
+  - digital_map_bb_0
+  - '0'
+- - digital_linear_equalizer_0
+  - '0'
+  - digital_costas_loop_cc_0
+  - '0'
+- - digital_linear_equalizer_0
+  - '0'
+  - virtual_sink_1_0_0_0_0
+  - '0'
+- - digital_map_bb_0
+  - '0'
+  - blocks_unpack_k_bits_bb_0
+  - '0'
+- - digital_pfb_clock_sync_xxx_0
+  - '0'
+  - digital_linear_equalizer_0
+  - '0'
+- - digital_pfb_clock_sync_xxx_0
+  - '0'
+  - virtual_sink_1_0_0_0_0_1
+  - '0'
+- - epy_block_0
+  - '0'
+  - process
+  - '0'
+- - epy_block_1
+  - '0'
+  - digital_constellation_modulator_0
+  - '0'
+- - epy_block_1
+  - '0'
+  - virtual_sink_1_0_0
+  - '0'
+- - r2_source
+  - '0'
+  - digital_pfb_clock_sync_xxx_0
+  - '0'
+- - r2_source
+  - '0'
+  - virtual_sink_1
+  - '0'
+- - virtual_source_0
+  - '0'
+  - digital_constellation_decoder_cb_0
+  - '0'
+- - virtual_source_1
+  - '0'
+  - qtgui_const_sink_x_0_0_0
+  - '0'
+- - virtual_source_1_0
+  - '0'
+  - qtgui_freq_sink_x_0
+  - '0'
+- - virtual_source_1_0_0
+  - '0'
+  - blocks_char_to_float_0_0_1_0
+  - '0'
+- - virtual_source_1_0_0_0
+  - '0'
+  - qtgui_time_sink_x_1
+  - '0'
+- - virtual_source_1_1_0
+  - '0'
+  - qtgui_const_sink_x_0_0_1_0
+  - '0'
+- - virtual_source_1_2
+  - '0'
+  - qtgui_const_sink_x_0_0_2
+  - '0'
+- - virtual_source_1_2_0
+  - '0'
+  - qtgui_const_sink_x_0
+  - '0'
+metadata:
+  file_format: 1
+  grc_version: 3.10.12.0

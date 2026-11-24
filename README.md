@@ -18,6 +18,7 @@ Hardware files, firmware and documentation for the **OpenSourceSDRLab PlutoSky R
 - PlutoSky R2 User Manual: <https://blog.opensourcesdrlab.com/archives/plutosky-r2-user-manual>
 - Tezuka firmware on the PlutoSky R2: <https://blog.opensourcesdrlab.com/archives/plutosky-r2-tezuka-firmware-user-manual>
 - openwifi on the PlutoSky R2: <https://blog.opensourcesdrlab.com/archives/plutosky-r2-openwifi-user-manual>
+- GNU Radio video transmission (QPSK file and live camera links): [docs/GNU-Radio-Video-Transmission.md](docs/GNU-Radio-Video-Transmission.md) ([PDF](docs/GNU-Radio-Video-Transmission.pdf)); flowgraphs in [`gnuradio/`](gnuradio)
 
 Videos:
 
@@ -49,8 +50,9 @@ The full steps, boot modes, firmware updates and the bare-metal Vivado/Vitis tes
 | `firmware/` | Where to get the prebuilt firmware; `firmware/source/` has the firmware source changes |
 | `vivado/AD936X/` | Bare-metal AD936X reference design: Analog Devices HDL library and `fmcomms2` project adapted to this board (`AD936X_PL/projects/fmcomms2/zc702/zc702.xpr`), no-OS AD9361 application sources and `system_top.xsa` (`AD936X_PS/`) |
 | `vivado/Peripheral_Test/` | Vivado project with the Zynq PS configuration of this board (`Test_PL/`), test program sources and `design_1_wrapper.xsa` (`Test_PS/`) |
-| `docs/` | Quick Start Guide (Markdown and PDF) |
-| `images/` | Product photos |
+| `gnuradio/` | GNU Radio 3.10 examples: software loopback, single-board RF loopback, file transfer and live camera video between two PCs |
+| `docs/` | Quick Start Guide and GNU Radio video transmission guide (Markdown and PDF) |
+| `images/` | Product photos; `images/gnuradio/` has the figures of the GNU Radio guide |
 
 ## Downloads (Releases)
 
@@ -63,6 +65,7 @@ Large files are attached to the [Releases](../../releases) page instead of being
 | `jtag_spi_openwifi.zip` | openwifi image for the QSPI flash, written over JTAG (see the openwifi user manual) |
 | `PlutoSky-R2_AD936X_prebuilt_Vivado2021.1.zip` | Bare-metal AD936X design: bitstream, `.xsa`, FSBL, application `.elf` and `boot.bif` |
 | `PlutoSky-R2_Peripheral-Test_prebuilt_Vivado2021.1.zip` | Bare-metal peripheral tests: bitstream, `.xsa`, FSBL, LED / DDR / USB test `.elf` files and `boot.bif` |
+| `PlutoSky-R2_GNURadio-demos.zip` | The GNU Radio examples of the `gnuradio/` folder in one download |
 | `SHA256SUMS.txt` | SHA-256 checksums of the files above |
 
 Check a download with `shasum -a 256 -c SHA256SUMS.txt` (macOS / Linux) or `certutil -hashfile <file> SHA256` (Windows).

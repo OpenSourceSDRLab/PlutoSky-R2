@@ -2,7 +2,7 @@
 
 This repository and its release files contain work by OpenSourceSDRLab together with third-party software. The Apache License 2.0 in [LICENSE](LICENSE) applies **only** to the files created by OpenSourceSDRLab:
 
-- `docs/`, `hardware/`, `images/`, `firmware/README.md`, `firmware/source/README.md`, `README.md`
+- `docs/`, `hardware/`, `images/`, `gnuradio/`, `firmware/README.md`, `firmware/source/README.md`, `README.md`, and `PlutoSky-R2_GNURadio-demos.zip` in Releases
 - the `README.txt` and `boot.bif` files inside the two `*_prebuilt_Vivado2021.1.zip` files in Releases
 - the two new files `hdl/projects/pluto/ADF4001_init.v` and `ADF4001_spi_drive.v` added by `firmware/source/plutosky-r2-plutosdr-fw-v0.38.patch`
 
@@ -39,6 +39,7 @@ Source code of the GPL components: the exact upstream commits and the changes ar
 Software that is **not** included:
 
 - the Tezuka firmware shipped on the SD card: <https://github.com/F5OEO/tezuka_fw>;
+- GNU Radio and gr-iio, needed to run the examples in `gnuradio/` (GPL-3.0): <https://www.gnuradio.org>;
 - PlutoSDR USB drivers for Windows (including `dfu-util`), libiio and IIO Oscilloscope: <https://wiki.analog.com/university/tools/pluto/users>.
 
-"Analog Devices", "PlutoSDR", "AD9361", "AD9363", "FMCOMMS2", "Xilinx", "AMD", "Zynq", "Vivado" and "Vitis" are trademarks of their respective owners. They are used here only to describe compatibility and do not imply endorsement.
+"GNU Radio", "Analog Devices", "PlutoSDR", "AD9361", "AD9363", "FMCOMMS2", "Xilinx", "AMD", "Zynq", "Vivado" and "Vitis" are trademarks of their respective owners. They are used here only to describe compatibility and do not imply endorsement.
